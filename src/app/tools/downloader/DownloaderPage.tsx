@@ -129,7 +129,7 @@ export default function DownloaderPage() {
                                     disabled={isLoading || !url}
                                     className={`absolute left-2 top-2 bottom-2 px-6 rounded-xl font-bold text-white transition-all flex items-center gap-2 ${isLoading || !url
                                             ? 'bg-gray-300 cursor-not-allowed'
-                                            : 'bg-gradient-to-r from-purple-500 to-indigo-600 hover:shadow-lg hover:shadow-purple-500/30 hover:-translate-y-0.5'
+                                            : 'bg-linear-to-r from-purple-500 to-indigo-600 hover:shadow-lg hover:shadow-purple-500/30 hover:-translate-y-0.5'
                                         }`}
                                 >
                                     {isLoading ? (
@@ -180,8 +180,8 @@ export default function DownloaderPage() {
                                                         href="#"
                                                         onClick={(e) => { e.preventDefault(); alert('تحميل تجريبي. يتطلب ربط API حقيقي للعمل.'); }}
                                                         className={`flex items-center justify-between px-4 py-3 rounded-xl border-2 transition-all group ${idx === 0
-                                                                ? 'border-purple-500 bg-purple-50 hover:bg-purple-100 text-purple-700'
-                                                                : 'border-gray-100 hover:border-purple-300 hover:bg-gray-50 text-gray-700'
+                                                            ? 'border-purple-500 bg-purple-50 hover:bg-purple-100 text-purple-700'
+                                                            : 'border-gray-100 hover:border-purple-300 hover:bg-gray-50 text-gray-700'
                                                             }`}
                                                     >
                                                         <span className="font-bold flex items-center gap-2 text-sm">
