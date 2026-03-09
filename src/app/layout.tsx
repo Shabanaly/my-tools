@@ -3,7 +3,17 @@ import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import "./globals.css";
 
+export const viewport = {
+  themeColor: '#3b5bdb',
+};
+
 export const metadata: Metadata = {
+  applicationName: 'أدواتك',
+  appleWebApp: {
+    capable: true,
+    title: 'أدواتك',
+    statusBarStyle: 'default',
+  },
   metadataBase: new URL('https://tools.daleel-al-suez.com'),
   title: {
     template: '%s | أدواتك',
