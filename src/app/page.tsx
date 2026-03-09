@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PageLayout from '@/components/PageLayout';
 import AdBanner from '@/components/AdBanner';
-import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign } from 'lucide-react';
+import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock } from 'lucide-react';
 
 const tools = [
   {
@@ -14,6 +14,16 @@ const tools = [
     gradient: 'linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)',
     shadow: 'rgba(13,148,136,0.25)',
     accent: '#0d9488',
+  },
+  {
+    id: 'age',
+    title: 'حاسبة العمر',
+    description: 'احسب عمرك بدقة ومتى موعد ميلادك القادم',
+    icon: CalendarClock,
+    path: '/tools/age',
+    gradient: 'linear-gradient(135deg, #d946ef 0%, #c026d3 100%)',
+    shadow: 'rgba(217,70,239,0.25)',
+    accent: '#d946ef',
   },
   {
     id: 'installment',
