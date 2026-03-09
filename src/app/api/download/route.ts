@@ -36,9 +36,9 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ message: data.message || 'فشل استخراج بيانات الفيديو' }, { status: response.status });
         }
 
-        // Simplified aggregation: One MP3 + One per Resolution for MP4
+        // Advanced aggregation: Priorities Combined (Audio+Video) and Compatibility (H.264)
         const finalFormats: any[] = [];
-        let audioAdded = false;
+        const audioMap = new Map(); // label -> best audio object
         const videoMap = new Map(); // resolution -> best media object
 
         if (data.medias) {
@@ -47,45 +47,69 @@ export async function POST(req: NextRequest) {
                 const url = m.url;
                 if (!url) continue;
 
-                // 1. Handle Audio (Highest quality MP3/M4A)
-                if ((ext === 'mp3' || ext === 'm4a') && !audioAdded) {
-                    finalFormats.push({
-                        resolution: 'تحميل صوتي عالي الجودة (MP3)',
-                        size: m.formattedSize || 'غير معروف',
-                        type: 'mp3',
-                        url: url,
-                        isAudio: true
-                    });
-                    audioAdded = true;
+                const quality = m.quality || '';
+                const isNoWatermark = /no[\s-]*watermark/i.test(quality);
+
+                // Detect if it's Audio only, Video only, or Combined
+                // Some APIs explicitely say "no audio" or similar
+                const isMuted = /no[\s-]*audio|mute|video[\s-]*only/i.test(quality);
+                const isAudioOnly = ext === 'mp3' || ext === 'm4a' || /audio[\s-]*only/i.test(quality);
+                const isCombined = !isAudioOnly && !isMuted;
+
+                // 1. Handle Audio
+                if (isAudioOnly) {
+                    const audioLabel = quality || 'Standard';
+                    if (!audioMap.has(audioLabel)) {
+                        audioMap.set(audioLabel, {
+                            resolution: `تحميل صوتي (MP3) - ${audioLabel}`,
+                            size: m.formattedSize || 'غير معروف',
+                            type: 'mp3',
+                            url: url,
+                            isAudio: true
+                        });
+                    }
                     continue;
                 }
 
-                // 2. Handle Video (MP4)
-                if (ext === 'mp4') {
-                    const quality = m.quality || '';
+                // 2. Handle Video (Focus on MP4 and Compatibility)
+                if (ext === 'mp4' || ext === 'webm') {
                     const resMatch = quality.match(/(\d{3,4}p)/i);
-                    const res = resMatch ? resMatch[1] : '360p'; // Default 360p if not found
+                    const res = resMatch ? resMatch[1] : 'جودة تلقائية';
 
-                    const isNoWatermark = /no[\s-]*watermark/i.test(quality);
+                    const isAVC = /avc1|h264/i.test(quality) || ext === 'mp4'; // MP4 usually container for AVC
                     const currentBest = videoMap.get(res);
 
-                    // Prefer "No Watermark" versions
-                    if (!currentBest || (isNoWatermark && !currentBest.isNoWatermark)) {
+                    // Scoring system for "The Best" version of a resolution:
+                    // Combined (+100) > No Watermark (+50) > AVC/H264 (+25)
+                    let score = 0;
+                    if (isCombined) score += 100;
+                    if (isNoWatermark) score += 50;
+                    if (isAVC) score += 25;
+
+                    if (!currentBest || score > currentBest.score) {
                         videoMap.set(res, {
-                            resolution: `فيديو بجودة ${res}${isNoWatermark ? ' (بدون علامة مائية)' : ''}`,
+                            resolution: `فيديو ${res}${isNoWatermark ? ' (بدون علامة مائية)' : ''}${isMuted ? ' (بدون صوت)' : ''}`,
                             size: m.formattedSize || 'غير معروف',
-                            type: 'mp4',
+                            type: ext,
                             url: url,
                             isNoWatermark: isNoWatermark,
-                            resValue: parseInt(res)
+                            isMuted: isMuted,
+                            resValue: parseInt(res) || 0,
+                            score: score
                         });
                     }
                 }
             }
         }
 
+        // Add Audios (Max 2 to avoid clutter, usually Original + English)
+        finalFormats.push(...Array.from(audioMap.values()).slice(0, 2));
+
         // Add videos to final list sorted by resolution
-        const sortedVideos = Array.from(videoMap.values()).sort((a, b) => b.resValue - a.resValue);
+        const sortedVideos = Array.from(videoMap.values())
+            .filter(v => !v.isMuted) // Only show videos with sound to regular users
+            .sort((a, b) => b.resValue - a.resValue);
+
         finalFormats.push(...sortedVideos);
 
         const result = {
