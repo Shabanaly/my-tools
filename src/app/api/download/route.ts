@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
                 // 1. Handle Audio (Highest quality MP3/M4A)
                 if ((ext === 'mp3' || ext === 'm4a') && !audioAdded) {
                     finalFormats.push({
-                        resolution: 'تحميل صوتي (MP3 High Quality)',
+                        resolution: 'تحميل صوتي عالي الجودة (MP3)',
                         size: m.formattedSize || 'غير معروف',
                         type: 'mp3',
                         url: url,
