@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PageLayout from '@/components/PageLayout';
 import AdBanner from '@/components/AdBanner';
-import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet, Hash, Layers, DownloadCloud } from 'lucide-react';
+import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet, Hash, Layers, DownloadCloud, Type } from 'lucide-react';
 
 const tools = [
   {
@@ -14,6 +14,16 @@ const tools = [
     gradient: 'linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)',
     shadow: 'rgba(13,148,136,0.25)',
     accent: '#0d9488',
+  },
+  {
+    id: 'ocr',
+    title: 'استخراج النص من الصور',
+    description: 'حول أي صورة لنص مكتوب باللغة العربية والإنجليزية',
+    icon: Type,
+    path: '/tools/ocr',
+    gradient: 'linear-gradient(135deg, #38bdf8 0%, #0369a1 100%)',
+    shadow: 'rgba(56,189,248,0.25)',
+    accent: '#38bdf8',
   },
   {
     id: 'downloader',
