@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PageLayout from '@/components/PageLayout';
 import AdBanner from '@/components/AdBanner';
-import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet, Hash, Layers } from 'lucide-react';
+import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet, Hash, Layers, DownloadCloud } from 'lucide-react';
 
 const tools = [
   {
@@ -14,6 +14,16 @@ const tools = [
     gradient: 'linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)',
     shadow: 'rgba(13,148,136,0.25)',
     accent: '#0d9488',
+  },
+  {
+    id: 'downloader',
+    title: 'تحميل الفيديوهات',
+    description: 'تنزيل فيديوهات من يوتيوب وتيك توك بدون علامة مائية',
+    icon: DownloadCloud,
+    path: '/tools/downloader',
+    gradient: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
+    shadow: 'rgba(139,92,246,0.25)',
+    accent: '#8b5cf6',
   },
   {
     id: 'pdf-merge',
