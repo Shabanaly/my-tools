@@ -1,26 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --bg-primary: #f8f9ff;
+  --bg-card: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border: #e8eaf0;
+
+  /* Brand palette */
+  --brand-blue:   #3b5bdb;
+  --brand-purple: #7048e8;
+  --brand-green:  #0ca678;
+  --brand-gold:   #f59f00;
+  --brand-rose:   #e64980;
+  --brand-red:    #e03131;
+
+  /* Mesh gradient for hero */
+  --hero-gradient: radial-gradient(ellipse 80% 60% at 50% -20%, #dbeafe 0%, transparent 60%),
+                   radial-gradient(ellipse 60% 40% at 80% 80%, #ede9fe 0%, transparent 60%),
+                   #f8f9ff;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --font-sans: 'Cairo', sans-serif;
 }
 
+/* Explicitly disable dark mode — this is a light-only app */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: light;
+  }
+  html {
+    background-color: #f8f9ff !important;
+    color: #0f172a !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  background-color: #f8f9ff !important;
+  color: #0f172a !important;
+  font-family: 'Cairo', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Glassmorphism card ─────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04),
+              0 8px 32px rgba(15, 23, 42, 0.06);
+}
+
+/* ── Floating input style ───────────────────────── */
+.input-field {
+  width: 100%;
+  padding: 14px 20px;
+  background: #f8f9ff;
+  border: 1.5px solid #e8eaf0;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  font-family: 'Cairo', sans-serif;
+  outline: none;
+  transition: all 0.2s;
+  color: var(--text-primary);
+}
+
+.input-field:focus {
+  background: #fff;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 4px rgba(59, 91, 219, 0.08);
+}
+
+/* ── Gradient headings ──────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-purple) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Button base ────────────────────────────────── */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 32px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  font-family: 'Cairo', sans-serif;
+  color: #fff;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* ── Result card ────────────────────────────────── */
+.result-card {
+  border-radius: 24px;
+  padding: 36px;
+  text-align: center;
+  animation: pop-in 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.94) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0);       }
 }

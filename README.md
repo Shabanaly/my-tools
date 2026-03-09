@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# أدواتك (Adowatak) 🛠️✨
 
-## Getting Started
+مرحباً بك في مستودع مشروع **أدواتك**! 
+**أدواتك** هي منصة متكاملة وسريعة تقدم مجموعة من الأدوات اليومية المجانية بالكامل لمساعدتك في مهامك المالية والتقنية بكل سهولة، بتصميم عصري (Glassmorphism) مريح للعين، واحترافية عالية، **وبدون أي حاجة لتسجيل الدخول.**
 
-First, run the development server:
+![Adowatak Hero Showcase](/public/hero-preview.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌟 الميزات والأدوات المتاحة
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 💳 **حاسبة التقسيط:** احسب القسط الشهري وإجمالي المبلغ المستحق لعمليات الشراء والتمويل بلمسة واحدة.
+- 🪙 **حاسبة الذهب (السعر اللحظي):** اعرف قيمة مدخراتك من الذهب بناءً على أسعار السوق الحقيقية اللحظية لمختلف العيارات (24, 21, 18...). يتم التحديث فورياً عبر API مجاني.
+- 🤲 **حاسبة الزكاة:** احسب زكاة مالك وفقاً لأحكام الشريعة الإسلامية مع مراعاة حد النصاب وتحديث السعر تلقائياً.
+- 🗜️ **ضاغط الصور (Image Compressor):** قلل مساحة صورك (PNG, JPG, WebP) محلياً في متصفحك للحفاظ على الخصوصية وتقليل حجم الرفع.
+- 📑 **تحويل الصور إلى PDF:** ادمج مستنداتك وصورك في ملف PDF احترافي جاهز للطباعة أو المشاركة.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 التقنيات المستخدمة
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+تم بناء المشروع بأحدث التقنيات لضمان السرعة، الأمان، وتجربة المستخدم الممتازة:
+- **إطار العمل:** [Next.js 15 (App Router)](https://nextjs.org/)
+- **مكتبة الواجهات:** [React 19](https://react.dev/)
+- **التصميم والتنسيق:** [Tailwind CSS v4](https://tailwindcss.com/) مدمج مع تأثيرات الـ Glassmorphism والتدرجات.
+- **الخطوط:** خط **Cairo** العربي المتوافق مع جميع الشاشات.
+- **الأيقونات:** [Lucide-React](https://lucide.dev/)
+- **التحليلات والإعلانات:** Vercel Analytics و Google AdSense (جاهز للتركيب).
+- **SEO محترف:** إعدادات Metadata ديناميكية، OpenGraph, Twitter Cards، بالإضافة إلى خريطة موقع (Sitemap) وموجهات روبوتات تلقائية (robots.txt).
 
-## Learn More
+## 🛠️ كيفية تشغيل المشروع محلياً
 
-To learn more about Next.js, take a look at the following resources:
+لتشغيل المشروع على جهازك للتطوير أو التعديل، اتبع الخطوات التالية:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **استنساخ المستودع (Clone the repository):**
+   ```bash
+   git clone https://github.com/Shabanaly/my-tools.git
+   cd my-tools
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **تثبيت الحزم (Install dependencies):**
+   ```bash
+   npm install
+   # أو باستخدام yarn
+   yarn install
+   ```
 
-## Deploy on Vercel
+3. **تشغيل خادم التطوير (Run development server):**
+   ```bash
+   npm run dev
+   # أو
+   yarn dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **معاينة الموقع:**
+   افتح المتصفح وانتقل إلى [http://localhost:3000](http://localhost:3000)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📂 هيكل المجلدات الرئيسي
+
+- `src/app`: يحتوي على خط توجيه الصفحات (App Router) مثل الرئيسية (`page.tsx`)، وكل أداة مجلد خاص بها في `src/app/tools`.
+- `src/components`: المكونات القابلة لإعادة الاستخدام (Layout, Navigation, Cards, AdBanner).
+- `src/lib`: دوال المساعدة والمنافع البرمجية.
+- `public`: الملفات الثابتة كالصور والأيقونات.
+
+## 🤝 المساهمة (Contributing)
+
+نرحب بكافة المساهمات! إذا كان لديك فكرة لأداة جديدة أو تحسين لشيء موجود:
+1. قم بعمل Fork للمستودع.
+2. أنشئ Branch جديد (`git checkout -b feature/AmazingFeature`).
+3. أضف تعديلاتك وقم بعمل Commit (`git commit -m 'Add some AmazingFeature'`).
+4. ارفع التعديلات (`git push origin feature/AmazingFeature`).
+5. افتح Pull Request.
+
+## 📄 الترخيص
+
+هذا المشروع متاح للاستخدام المفتوح. بناءً وتوجيهاً لخدمة المجتمع العربي وتسهيل أعمالهم اليومية.
+
+---
+**صُنع بحب من أجل مجتمع ويب أفضل ❤️**
