@@ -34,47 +34,25 @@ export default function DownloaderPage() {
         setIsLoading(true);
         setResult(null);
 
-        // TODO: Replace this with actual API call (e.g., to a Next.js API route that calls RapidAPI)
-        // For now, we simulate a network delay and return a mock successful response to showcase the UI.
-        setTimeout(() => {
-            let platform = 'موقع غير معروف';
-            if (url.includes('youtube.com') || url.includes('youtu.be')) platform = 'يوتيوب';
-            else if (url.includes('tiktok.com')) platform = 'تيك توك';
-            else if (url.includes('instagram.com')) platform = 'إنستجرام';
-            else if (url.includes('twitter.com') || url.includes('x.com')) platform = 'إكس (تويتر)';
-            else if (url.includes('facebook.com') || url.includes('fb.watch')) platform = 'فيسبوك';
-
-            setResult({
-                title: `فيديو ${platform} (هذا مجرد معاينة للتصميم)`,
-                thumbnail: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=400',
-                platform: platform,
-                formats: [
-                    { resolution: '1080p (HD)', size: '25 MB', type: 'mp4' },
-                    { resolution: '720p', size: '12 MB', type: 'mp4' },
-                    { resolution: 'Audio Only', size: '3 MB', type: 'mp3' }
-                ]
+        try {
+            const res = await fetch('/api/download', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url })
             });
-            setIsLoading(false);
 
-            // In a real scenario, you would uncomment the following code and remove the mock above:
-            /*
-            try {
-                const res = await fetch('/api/download', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ url })
-                });
-                const data = await res.json();
-                if (!res.ok) throw new Error(data.message || 'فشل جلب الفيديو');
-                setResult(data);
-            } catch (err: any) {
-                setError(err.message);
-            } finally {
-                setIsLoading(false);
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.message || 'فشل جلب بيانات الفيديو. تأكد من صحة الرابط.');
             }
-            */
 
-        }, 1500);
+            setResult(data);
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -128,8 +106,8 @@ export default function DownloaderPage() {
                                     type="submit"
                                     disabled={isLoading || !url}
                                     className={`absolute left-2 top-2 bottom-2 px-6 rounded-xl font-bold text-white transition-all flex items-center gap-2 ${isLoading || !url
-                                            ? 'bg-gray-300 cursor-not-allowed'
-                                            : 'bg-linear-to-r from-purple-500 to-indigo-600 hover:shadow-lg hover:shadow-purple-500/30 hover:-translate-y-0.5'
+                                        ? 'bg-gray-300 cursor-not-allowed'
+                                        : 'bg-linear-to-r from-purple-500 to-indigo-600 hover:shadow-lg hover:shadow-purple-500/30 hover:-translate-y-0.5'
                                         }`}
                                 >
                                     {isLoading ? (
@@ -177,8 +155,9 @@ export default function DownloaderPage() {
                                                 {result.formats.map((format: any, idx: number) => (
                                                     <a
                                                         key={idx}
-                                                        href="#"
-                                                        onClick={(e) => { e.preventDefault(); alert('تحميل تجريبي. يتطلب ربط API حقيقي للعمل.'); }}
+                                                        href={format.url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
                                                         className={`flex items-center justify-between px-4 py-3 rounded-xl border-2 transition-all group ${idx === 0
                                                             ? 'border-purple-500 bg-purple-50 hover:bg-purple-100 text-purple-700'
                                                             : 'border-gray-100 hover:border-purple-300 hover:bg-gray-50 text-gray-700'
