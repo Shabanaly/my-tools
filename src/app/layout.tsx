@@ -4,7 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://adowatak.com'), // Using a placeholder domain since we don't have the final one
+  metadataBase: new URL('https://tools.daleel-al-suez.com'),
   title: {
     template: '%s | أدواتك',
     default: 'أدواتك | مجموعة أدوات مجانية',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ar_EG',
-    url: 'https://adowatak.com',
+    url: 'https://tools.daleel-al-suez.com',
     title: 'أدواتك | مجموعة أدوات مجانية',
     description: 'تسهل مهامك اليومية بأدوات مجانية بالكامل. بدون تسجيل دخول.',
     siteName: 'أدواتك',

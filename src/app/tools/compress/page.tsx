@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'ضغط الصور اونلاين بدون فقدان الجودة | أدواتك',
         description: 'صغّر حجم الصور وتقليل مساحتها بدون فقدان الجودة. أداة ضغط مجانية وسريعة.',
-        url: 'https://adowatak.com/tools/compress',
+        url: 'https://tools.daleel-al-suez.com/tools/compress',
         type: 'website',
     },
     twitter: {

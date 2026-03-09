@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'حاسبة التقسيط | أدواتك',
         description: 'احسب القسط الشهري وإجمالي المبلغ المستحق بوضوح وببساطة مجاناً.',
-        url: 'https://adowatak.com/tools/installment',
+        url: 'https://tools.daleel-al-suez.com/tools/installment',
         type: 'website',
     },
     twitter: {

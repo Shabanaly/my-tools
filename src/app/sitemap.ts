@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://tools.daleel-al-suez.com'; // Replace with actual domain when deployed
+    const baseUrl = 'https://tools.daleel-al-suez.com'; // actual domain
 
     return [
         {

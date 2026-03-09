@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'حاسبة الذهب - أسعار لحظية | أدواتك',
         description: 'احسب قيمة مدخراتك من الذهب بناءً على الوزن والعيار وتحديث فوري للأسعار.',
-        url: 'https://adowatak.com/tools/gold',
+        url: 'https://tools.daleel-al-suez.com/tools/gold',
         type: 'website',
     },
     twitter: {

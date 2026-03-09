@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'حاسبة الزكاة | أدواتك',
         description: 'احسب زكاة مالك وفقاً للشريعة الإسلامية مع مراعاة حد النصاب.',
-        url: 'https://adowatak.com/tools/zakat',
+        url: 'https://tools.daleel-al-suez.com/tools/zakat',
         type: 'website',
     },
     twitter: {

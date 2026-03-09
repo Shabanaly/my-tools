@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'تحويل صور إلى PDF | أدواتك',
         description: 'ادمج مجموعة صور في ملف PDF واحد بضغطة زر وبسهولة تامة.',
-        url: 'https://adowatak.com/tools/pdf',
+        url: 'https://tools.daleel-al-suez.com/tools/pdf',
         type: 'website',
     },
     twitter: {
