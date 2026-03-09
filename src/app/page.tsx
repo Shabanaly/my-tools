@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PageLayout from '@/components/PageLayout';
 import AdBanner from '@/components/AdBanner';
-import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock } from 'lucide-react';
+import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon } from 'lucide-react';
 
 const tools = [
   {
@@ -24,6 +24,16 @@ const tools = [
     gradient: 'linear-gradient(135deg, #d946ef 0%, #c026d3 100%)',
     shadow: 'rgba(217,70,239,0.25)',
     accent: '#d946ef',
+  },
+  {
+    id: 'converter',
+    title: 'تحويل صيغ الصور',
+    description: 'حوّل صور WebP إلى JPG/PNG في ثوانٍ مجاناً',
+    icon: ImageIcon,
+    path: '/tools/image-converter',
+    gradient: 'linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%)',
+    shadow: 'rgba(14,165,233,0.25)',
+    accent: '#0ea5e9',
   },
   {
     id: 'installment',
