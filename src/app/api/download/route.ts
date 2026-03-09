@@ -37,53 +37,70 @@ export async function POST(req: NextRequest) {
         }
 
         // Consolidating data and cleaning technical strings
-        const commonExtensions = ['mp4', 'mp3', 'm4a'];
+        const commonExtensions = ['mp4', 'mp3', 'm4a', 'webm'];
         const uniqueFormats: any[] = [];
-        const seenResolutions = new Set();
+        const seenLinks = new Set();
 
         if (data.medias) {
             for (const m of data.medias) {
                 const ext = m.extension?.toLowerCase();
-                if (!commonExtensions.includes(ext)) continue;
+                const url = m.url;
+                if (!commonExtensions.includes(ext) || !url) continue;
 
-                // Clean-up resolution string: e.g. "mp4 (1080p) avc1" -> "1080p"
-                let cleanRes = m.quality || '';
-                const match = cleanRes.match(/\((.*?)\)/);
-                if (match) {
-                    cleanRes = match[1]; // Get just the part inside brackets like 1080p
+                // Avoid duplicate identical links
+                if (seenLinks.has(url)) continue;
+                seenLinks.add(url);
+
+                // Clean-up resolution string
+                let originalQuality = m.quality || '';
+                let label = originalQuality;
+
+                // Detect special attributes
+                const isWatermark = /watermark/i.test(originalQuality) && !/no[\s-]*watermark/i.test(originalQuality);
+                const isNoWatermark = /no[\s-]*watermark/i.test(originalQuality);
+                const isAudioOnly = ext === 'mp3' || ext === 'm4a';
+
+                // Extract resolution (e.g. 1080p)
+                const resMatch = originalQuality.match(/(\d{3,4}p)/i);
+                const resolution = resMatch ? resMatch[1] : '';
+
+                if (isAudioOnly) {
+                    label = `تحميل صوتي (MP3) ${m.quality || ''}`.trim();
                 } else {
-                    cleanRes = cleanRes.replace(/\s*(avc1|av01|vp9|h264|dash).*/gi, '').trim();
-                }
+                    let qualityText = resolution || 'جودة متوفرة';
+                    if (isNoWatermark) qualityText += ' (بدون علامة مائية)';
+                    else if (isWatermark) qualityText += ' (مع علامة مائية)';
 
-                if (!cleanRes || cleanRes.toLowerCase() === 'video') cleanRes = 'جودة عادية';
-                if (ext === 'mp3' || ext === 'm4a') {
-                    cleanRes = 'تحميل صوتي (MP3)';
+                    // Clean technical codec noise from label
+                    label = qualityText.replace(/\s*(avc1|av01|vp9|h264|dash|hdr).*/gi, '').trim();
                 }
-
-                // Check for duplicates (we only want one 1080p, one 720p, etc.)
-                const duplicateKey = `${cleanRes}-${ext}`;
-                if (seenResolutions.has(duplicateKey)) continue;
 
                 uniqueFormats.push({
-                    resolution: cleanRes,
+                    resolution: label,
                     size: m.formattedSize || 'غير معروف',
                     type: ext,
-                    url: m.url
+                    url: url,
+                    isNoWatermark: isNoWatermark
                 });
-                seenResolutions.add(duplicateKey);
             }
         }
 
-        // Sort: Audio first, then descending video quality
+        // Sort: MP3/Audio first, then "No Watermark" videos, then by resolution descending
         const sortedFormats = uniqueFormats.sort((a, b) => {
             const isAudioA = a.type === 'mp3' || a.type === 'm4a';
             const isAudioB = b.type === 'mp3' || b.type === 'm4a';
+
             if (isAudioA && !isAudioB) return -1;
             if (!isAudioA && isAudioB) return 1;
+            if (isAudioA && isAudioB) return 0;
 
-            // For videos, sort by resolution (extract number if possible)
-            const resA = parseInt(a.resolution) || 0;
-            const resB = parseInt(b.resolution) || 0;
+            // For videos: No watermark first
+            if (a.isNoWatermark && !b.isNoWatermark) return -1;
+            if (!a.isNoWatermark && b.isNoWatermark) return 1;
+
+            // Then by resolution number (e.g. 1080 vs 720)
+            const resA = parseInt(a.resolution.match(/\d+/)?.[0] || '0');
+            const resB = parseInt(b.resolution.match(/\d+/)?.[0] || '0');
             return resB - resA;
         });
 

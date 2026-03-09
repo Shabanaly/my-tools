@@ -158,13 +158,18 @@ export default function DownloaderPage() {
                                                         href={format.url}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className={`flex items-center justify-between px-4 py-3 rounded-xl border-2 transition-all group ${idx === 0
-                                                            ? 'border-purple-500 bg-purple-50 hover:bg-purple-100 text-purple-700'
-                                                            : 'border-gray-100 hover:border-purple-300 hover:bg-gray-50 text-gray-700'
+                                                        className={`flex items-center justify-between px-4 py-3 rounded-xl border-2 transition-all group ${format.isNoWatermark
+                                                                ? 'border-green-500 bg-green-50 hover:bg-green-100 text-green-700'
+                                                                : idx === 0 && (format.type === 'mp3' || format.type === 'm4a')
+                                                                    ? 'border-purple-500 bg-purple-50 hover:bg-purple-100 text-purple-700'
+                                                                    : 'border-gray-100 hover:border-purple-300 hover:bg-gray-50 text-gray-700'
                                                             }`}
                                                     >
                                                         <span className="font-bold flex items-center gap-2 text-sm">
                                                             {format.resolution}
+                                                            {format.isNoWatermark && (
+                                                                <span className="text-[10px] px-2 py-0.5 bg-green-200 text-green-800 rounded-md font-black">ينصح به</span>
+                                                            )}
                                                             <span className="text-xs font-medium px-2 py-0.5 bg-white/60 rounded-md uppercase border border-black/5 opacity-70">
                                                                 {format.type}
                                                             </span>
