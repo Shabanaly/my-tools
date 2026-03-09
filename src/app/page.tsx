@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PageLayout from '@/components/PageLayout';
 import AdBanner from '@/components/AdBanner';
-import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet } from 'lucide-react';
+import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet, Hash } from 'lucide-react';
 
 const tools = [
   {
@@ -14,6 +14,16 @@ const tools = [
     gradient: 'linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)',
     shadow: 'rgba(13,148,136,0.25)',
     accent: '#0d9488',
+  },
+  {
+    id: 'hashtags',
+    title: 'مولد الهاشتاجات',
+    description: 'هاشتاجات رائجة وجاهزة لزيادة المشاهدات',
+    icon: Hash,
+    path: '/tools/hashtags',
+    gradient: 'linear-gradient(135deg, #f59e0b 0%, #ec4899 100%)',
+    shadow: 'rgba(236,72,153,0.25)',
+    accent: '#ec4899',
   },
   {
     id: 'salary',
