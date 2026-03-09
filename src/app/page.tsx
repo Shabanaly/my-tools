@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PageLayout from '@/components/PageLayout';
 import AdBanner from '@/components/AdBanner';
-import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet, Hash } from 'lucide-react';
+import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet, Hash, Layers } from 'lucide-react';
 
 const tools = [
   {
@@ -14,6 +14,16 @@ const tools = [
     gradient: 'linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)',
     shadow: 'rgba(13,148,136,0.25)',
     accent: '#0d9488',
+  },
+  {
+    id: 'pdf-merge',
+    title: 'دمج وتجميع الـ PDF',
+    description: 'اجمع عدة مستندات في ملف واحد بأمان كامل',
+    icon: Layers,
+    path: '/tools/pdf-merge',
+    gradient: 'linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)',
+    shadow: 'rgba(225,29,72,0.25)',
+    accent: '#e11d48',
   },
   {
     id: 'hashtags',
