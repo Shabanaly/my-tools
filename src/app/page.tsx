@@ -2,9 +2,19 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PageLayout from '@/components/PageLayout';
 import AdBanner from '@/components/AdBanner';
-import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage } from 'lucide-react';
+import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign } from 'lucide-react';
 
 const tools = [
+  {
+    id: 'currency',
+    title: 'تحويل العملات',
+    description: 'أسعار الصرف اللحظية لأهم العملات بخطوة واحدة',
+    icon: DollarSign,
+    path: '/tools/currency',
+    gradient: 'linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)',
+    shadow: 'rgba(13,148,136,0.25)',
+    accent: '#0d9488',
+  },
   {
     id: 'installment',
     title: 'حاسبة التقسيط',
@@ -85,7 +95,7 @@ export default function Home() {
 
           {/* Image Content */}
           <div className="flex-1 relative flex justify-center hover:-translate-y-2 transition-transform duration-500">
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-100/40 to-purple-100/40 blur-3xl rounded-full scale-75 -z-10"></div>
+            <div className="absolute inset-0 bg-linear-to-tr from-blue-100/40 to-purple-100/40 blur-3xl rounded-full scale-75 -z-10"></div>
             <Image
               src="/hero-illustration.png"
               alt="أدواتك اليومية - حاسبات وتحويل ملفات"
