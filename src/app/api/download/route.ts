@@ -29,24 +29,69 @@ export async function POST(req: NextRequest) {
             body: JSON.stringify({ url })
         };
 
-        const response = await fetch('https://social-download-all-in-one.p.rapidapi.com/v1/social/autodetect', options);
+        const response = await fetch('https://social-download-all-in-one.p.rapidapi.com/v1/social/autolink', options);
         const data = await response.json();
 
         if (!response.ok) {
             return NextResponse.json({ message: data.message || 'فشل استخراج بيانات الفيديو' }, { status: response.status });
         }
 
-        // Consolidating data to match our frontend expectations
+        // Consolidating data and cleaning technical strings
+        const commonExtensions = ['mp4', 'mp3', 'm4a'];
+        const uniqueFormats: any[] = [];
+        const seenResolutions = new Set();
+
+        if (data.medias) {
+            for (const m of data.medias) {
+                const ext = m.extension?.toLowerCase();
+                if (!commonExtensions.includes(ext)) continue;
+
+                // Clean-up resolution string: e.g. "mp4 (1080p) avc1" -> "1080p"
+                let cleanRes = m.quality || '';
+                const match = cleanRes.match(/\((.*?)\)/);
+                if (match) {
+                    cleanRes = match[1]; // Get just the part inside brackets like 1080p
+                } else {
+                    cleanRes = cleanRes.replace(/\s*(avc1|av01|vp9|h264|dash).*/gi, '').trim();
+                }
+
+                if (!cleanRes || cleanRes.toLowerCase() === 'video') cleanRes = 'جودة عادية';
+                if (ext === 'mp3' || ext === 'm4a') {
+                    cleanRes = 'تحميل صوتي (MP3)';
+                }
+
+                // Check for duplicates (we only want one 1080p, one 720p, etc.)
+                const duplicateKey = `${cleanRes}-${ext}`;
+                if (seenResolutions.has(duplicateKey)) continue;
+
+                uniqueFormats.push({
+                    resolution: cleanRes,
+                    size: m.formattedSize || 'غير معروف',
+                    type: ext,
+                    url: m.url
+                });
+                seenResolutions.add(duplicateKey);
+            }
+        }
+
+        // Sort: Audio first, then descending video quality
+        const sortedFormats = uniqueFormats.sort((a, b) => {
+            const isAudioA = a.type === 'mp3' || a.type === 'm4a';
+            const isAudioB = b.type === 'mp3' || b.type === 'm4a';
+            if (isAudioA && !isAudioB) return -1;
+            if (!isAudioA && isAudioB) return 1;
+
+            // For videos, sort by resolution (extract number if possible)
+            const resA = parseInt(a.resolution) || 0;
+            const resB = parseInt(b.resolution) || 0;
+            return resB - resA;
+        });
+
         const result = {
             title: data.title || 'فيديو من السوشيال ميديا',
             thumbnail: data.thumbnail || '',
-            platform: data.medias?.[0]?.extension || 'فيديو',
-            formats: data.medias?.map((m: any) => ({
-                resolution: m.quality || m.extension,
-                size: m.formattedSize || 'غير معروف',
-                type: m.extension,
-                url: m.url
-            })) || []
+            platform: data.platform || 'فيديو',
+            formats: sortedFormats
         };
 
         return NextResponse.json(result);
