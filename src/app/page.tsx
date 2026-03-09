@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PageLayout from '@/components/PageLayout';
 import AdBanner from '@/components/AdBanner';
-import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon } from 'lucide-react';
+import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet } from 'lucide-react';
 
 const tools = [
   {
@@ -14,6 +14,16 @@ const tools = [
     gradient: 'linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)',
     shadow: 'rgba(13,148,136,0.25)',
     accent: '#0d9488',
+  },
+  {
+    id: 'salary',
+    title: 'حاسبة الراتب',
+    description: 'احسب راتبك الصافي بدقة بعد الضرائب والتأمينات',
+    icon: Wallet,
+    path: '/tools/salary',
+    gradient: 'linear-gradient(135deg, #16a34a 0%, #22c55e 100%)',
+    shadow: 'rgba(22,163,74,0.25)',
+    accent: '#16a34a',
   },
   {
     id: 'age',
