@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import PageLayout from '@/components/PageLayout';
 import AdBanner from '@/components/AdBanner';
 import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage } from 'lucide-react';
@@ -63,20 +64,37 @@ export default function Home() {
         <AdBanner />
 
         {/* ── Hero ── */}
-        <div className="text-center mb-20 space-y-5">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold mb-4"
-            style={{ background: 'rgba(59,91,219,0.08)', color: '#3b5bdb', border: '1px solid rgba(59,91,219,0.15)' }}>
-            ✨ أدوات مجانية بالكامل
+        <div className="flex flex-col md:flex-row items-center justify-between mb-24 gap-12 mt-12">
+          {/* Text Content */}
+          <div className="text-start space-y-6 flex-1">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold mb-2 w-fit"
+              style={{ background: 'rgba(59,91,219,0.08)', color: '#3b5bdb', border: '1px solid rgba(59,91,219,0.15)' }}>
+              ✨ أدوات مجانية بالكامل
+            </div>
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-tight"
+              style={{ color: 'var(--text-primary)' }}>
+              أدواتك{' '}
+              <br className="hidden md:block" />
+              <span className="gradient-text">اليومية</span>
+            </h1>
+            <p className="text-lg md:text-xl max-w-lg leading-relaxed"
+              style={{ color: 'var(--text-secondary)' }}>
+              مجموعة أدوات مجانية وسريعة تسهّل مهامك. بسيطة، آمنة، بدون تسجيل دخول، ومصممة خصيصاً لتوفير وقتك.
+            </p>
           </div>
-          <h1 className="text-6xl md:text-7xl font-black tracking-tight leading-none"
-            style={{ color: 'var(--text-primary)' }}>
-            أدواتك{' '}
-            <span className="gradient-text">اليومية</span>
-          </h1>
-          <p className="text-xl max-w-xl mx-auto leading-relaxed"
-            style={{ color: 'var(--text-secondary)' }}>
-            مجموعة أدوات مجانية وسريعة تسهّل مهامك. بسيطة، آمنة، بدون تسجيل دخول.
-          </p>
+
+          {/* Image Content */}
+          <div className="flex-1 relative flex justify-center hover:-translate-y-2 transition-transform duration-500">
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-100/40 to-purple-100/40 blur-3xl rounded-full scale-75 -z-10"></div>
+            <Image
+              src="/hero-illustration.png"
+              alt="أدواتك اليومية - حاسبات وتحويل ملفات"
+              width={500}
+              height={500}
+              className="w-full max-w-[400px] md:max-w-[500px] object-contain drop-shadow-2xl saturate-125"
+              priority
+            />
+          </div>
         </div>
 
         {/* ── Tools Grid ── */}
