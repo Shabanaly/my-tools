@@ -7,9 +7,10 @@ import AdBanner from '@/components/AdBanner';
 interface PageProps {
     children?: React.ReactNode;
     className?: string;
+    hideTopAd?: boolean;
 }
 
-export default function PageLayout({ children, className }: PageProps) {
+export default function PageLayout({ children, className, hideTopAd }: PageProps) {
     return (
         <div className="min-h-screen flex flex-col" style={{ background: 'var(--hero-gradient)' }}>
             {/* ── Header ── */}
@@ -36,9 +37,11 @@ export default function PageLayout({ children, className }: PageProps) {
                 </div>
             </header>
 
-            <div className="max-w-6xl mx-auto w-full px-6 pt-6 -mb-8">
-                <AdBanner />
-            </div>
+            {!hideTopAd && (
+                <div className="max-w-6xl mx-auto w-full px-6 pt-6 -mb-8">
+                    <AdBanner />
+                </div>
+            )}
 
             {/* ── Main ── */}
             <main className={cn('flex-1', className)}>
