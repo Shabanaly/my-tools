@@ -72,21 +72,11 @@ export async function POST(req: NextRequest) {
                 label = `تحميل صوتي (${rawQuality})`;
             }
 
-            // Decide if we need to proxy the URL (e.g. for YouTube/GoogleVideo 403 errors)
-            let finalUrl = m.url;
-            const isRestrictedSource = /googlevideo\.com|youtube\.com|ytimg\.com/i.test(finalUrl);
-
-            if (isRestrictedSource) {
-                // Use our internal proxy to bypass IP restrictions
-                const cleanFilename = (data.title || 'video').replace(/[^\u0621-\u064A\u0660-\u0669a-zA-Z0-0\s]/g, '').trim();
-                finalUrl = `/api/download/proxy?url=${encodeURIComponent(m.url)}&filename=${encodeURIComponent(cleanFilename)}.${ext}`;
-            }
-
             finalFormats.push({
                 resolution: label,
                 size: m.formattedSize || 'غير معروف',
                 type: ext,
-                url: finalUrl,
+                url: m.url,
                 isAudio: type === 'audio',
                 isNoWatermark: /no[\s-]*watermark/i.test(rawQuality) || rawQuality === 'hd_no_watermark'
             });
