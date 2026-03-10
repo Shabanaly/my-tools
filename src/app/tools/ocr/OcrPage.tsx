@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import { ArrowLeft, Type, UploadCloud, RefreshCw, Copy, CheckCircle2, Image as ImageIcon, AlertCircle } from 'lucide-react';
 import { createWorker } from 'tesseract.js';
 
@@ -172,8 +171,8 @@ export default function OcrPage() {
                                     onClick={(e) => { e.stopPropagation(); processImage(); }}
                                     disabled={isProcessing}
                                     className={`px-10 py-4 text-lg rounded-2xl font-black text-white shadow-xl transition-all flex items-center gap-3 w-full md:w-auto justify-center ${isProcessing
-                                            ? 'bg-gray-400 cursor-not-allowed shadow-none'
-                                            : 'bg-linear-to-r from-sky-500 to-blue-600 hover:shadow-sky-500/40 hover:-translate-y-1'
+                                        ? 'bg-gray-400 cursor-not-allowed shadow-none'
+                                        : 'bg-linear-to-r from-sky-500 to-blue-600 hover:shadow-sky-500/40 hover:-translate-y-1'
                                         }`}
                                 >
                                     {isProcessing ? (
@@ -197,8 +196,8 @@ export default function OcrPage() {
                                     <button
                                         onClick={handleCopy}
                                         className={`px-5 py-2.5 rounded-xl font-bold text-white transition-all flex items-center gap-2 text-sm ${copied
-                                                ? 'bg-green-500'
-                                                : 'bg-sky-500 hover:bg-sky-600'
+                                            ? 'bg-green-500'
+                                            : 'bg-sky-500 hover:bg-sky-600'
                                             }`}
                                     >
                                         {copied ? (
@@ -241,8 +240,6 @@ export default function OcrPage() {
                         بكفاءة عالية دون الحاجة لرفع صورك الخاصة إلى أي خادم (معالجة محمية وآمنة 100% داخل جهازك).
                     </p>
                 </div>
-
-                <AdBanner />
             </div>
         </PageLayout>
     );

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import { FileImage, Upload, Download, X, Plus, ArrowLeft } from 'lucide-react';
 
 interface ImageFile {
@@ -127,7 +126,6 @@ export default function ImageToPdf() {
                         )}
                     </div>
                 </div>
-                <AdBanner />
             </div>
         </PageLayout>
     );

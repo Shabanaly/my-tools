@@ -3,7 +3,6 @@
 import { useState, useRef } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import {
     ArrowLeft, DownloadCloud, Link as LinkIcon, Youtube, Instagram, Twitter,
     Music2, Video, Play, X, AlertCircle, RefreshCw, CheckCircle, ChevronDown
@@ -339,8 +338,7 @@ export default function DownloaderPage() {
                     </div>
                 </div>
 
-                <AdBanner />
             </div>
-        </PageLayout>
+        </PageLayout >
     );
 }

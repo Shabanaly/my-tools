@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import { ArrowLeft, RefreshCw, ArrowRightLeft, DollarSign } from 'lucide-react';
 
 const popularCurrencies = [
@@ -197,7 +196,6 @@ export default function CurrencyPage() {
                     </p>
                 </div>
 
-                <AdBanner />
             </div>
         </PageLayout>
     );

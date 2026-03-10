@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import { CircleDollarSign, ArrowLeft, RefreshCcw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -157,7 +156,6 @@ export default function GoldCalculator() {
                         )}
                     </div>
                 </div>
-                <AdBanner />
             </div>
         </PageLayout>
     );

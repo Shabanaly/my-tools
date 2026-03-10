@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import {
     ArrowLeft, UploadCloud, Crop, CheckCircle, Download,
     Settings, Loader2, Image as ImageIcon, MousePointer2, Minus, Plus,
@@ -228,8 +227,6 @@ export default function CropperApp() {
                     <ArrowLeft className="w-4 h-4" />
                     العودة للرئيسية
                 </Link>
-
-                <AdBanner />
 
                 {/* ── HEADER ── */}
                 <div className="text-center mb-10 mt-6">

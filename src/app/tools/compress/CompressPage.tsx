@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import { ImageDown, Upload, Download, Check, ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -166,7 +165,6 @@ export default function ImageCompressor() {
                         )}
                     </div>
                 </div>
-                <AdBanner />
             </div>
         </PageLayout>
     );

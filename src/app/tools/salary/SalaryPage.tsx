@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import { ArrowLeft, Wallet, MinusCircle, PlusCircle, Receipt, PieChart } from 'lucide-react';
 
 export default function SalaryPage() {
@@ -166,8 +165,7 @@ export default function SalaryPage() {
                     </p>
                 </div>
 
-                <AdBanner />
             </div>
-        </PageLayout>
+        </PageLayout >
     );
 }

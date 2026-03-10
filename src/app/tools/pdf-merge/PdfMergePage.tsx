@@ -3,7 +3,6 @@
 import { useState, useRef } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import { ArrowLeft, FileText, UploadCloud, RefreshCw, CheckCircle, Download, X, Layers } from 'lucide-react';
 import { PDFDocument } from 'pdf-lib';
 
@@ -210,7 +209,6 @@ export default function PdfMergePage() {
                     </p>
                 </div>
 
-                <AdBanner />
             </div>
         </PageLayout>
     );

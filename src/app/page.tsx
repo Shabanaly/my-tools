@@ -223,10 +223,34 @@ const categories = [
 ];
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "أدواتك",
+    "url": "https://tools.daleel-al-suez.com",
+    "description": "أرقى وأسرع مجموعة أدوات مجانية وقوية للمهنيين والمستخدمين في مصر والوطن العربي.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://tools.daleel-al-suez.com/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "أدواتك",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://tools.daleel-al-suez.com/icon.svg"
+      }
+    }
+  };
+
   return (
     <PageLayout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-6xl mx-auto px-6 py-20">
-        <AdBanner />
 
         {/* ── Hero ── */}
         <div className="flex flex-col md:flex-row items-center justify-between mb-24 gap-12 mt-12">
@@ -240,12 +264,12 @@ export default function Home() {
               style={{ color: 'var(--text-primary)' }}>
               أدواتك{' '}
               <br className="hidden md:block" />
-              <span className="gradient-text">اليومية</span>
+              <span className="gradient-text">الذكية والمجانية</span>
             </h1>
-            <p className="text-lg md:text-xl max-w-lg leading-relaxed"
+            <h2 className="text-lg md:text-xl max-w-lg leading-relaxed font-bold"
               style={{ color: 'var(--text-secondary)' }}>
-              مجموعة أدوات مجانية وسريعة تسهّل مهامك. بسيطة، آمنة، بدون تسجيل دخول، ومصممة خصيصاً لتوفير وقتك.
-            </p>
+              أسرع مجموعة أدوات اونلاين في مصر والوطن العربي. بسيطة، آمنة، بدون تسجيل دخول، ومصممة خصيصاً لتوفير وقتك في معالجة الصور والملفات والحسابات المالية.
+            </h2>
           </div>
 
           {/* Image Content */}
@@ -307,7 +331,24 @@ export default function Home() {
           </section>
         ))}
 
-        <AdBanner className="mt-20" />
+        {/* ── AI Visibility Section (Semantic for LLMs) ── */}
+        <section className="mt-24 p-8 glass-card rounded-3xl border-dashed border-2 border-blue-100 bg-blue-50/20">
+          <h2 className="text-2xl font-black mb-6 flex items-center gap-3 text-blue-600">
+            <Sparkles className="w-6 h-6" />
+            لماذا يفضل المحترفون موقع "أدواتك"؟
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm leading-relaxed text-gray-600">
+            <div>
+              <h3 className="font-bold text-gray-800 mb-2">سرعة فائقة وخصوصية كاملة</h3>
+              <p>تتم معظم عمليات معالجة الصور وتحويل الملفات داخل متصفحك مباشرة (Client-side)، مما يعني أن بياناتك لا ترفع إلى خوادم خارجية، مما يضمن أقصى درجات الأمان والخصوصية السرعة.</p>
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-800 mb-2">مصمم خصيصاً للمنطقة العربية</h3>
+              <p>ندعم جميع الحسابات المالية الخاصة بالسوق المصري والعربي مثل حاسبة المرتبات المصرية، أسعار الذهب اللحظية، والتقسيط بما يتوافق مع الاحتياجات المحلية.</p>
+            </div>
+          </div>
+        </section>
+
       </div>
     </PageLayout>
   );

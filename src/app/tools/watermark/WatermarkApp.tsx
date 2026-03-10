@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import {
     ArrowLeft, UploadCloud, Type, Image as ImageIcon,
     DownloadCloud, X, Settings, LayoutGrid,
@@ -184,8 +183,6 @@ export default function WatermarkApp() {
                     <ArrowLeft className="w-4 h-4" />
                     العودة للرئيسية
                 </Link>
-
-                <AdBanner />
 
                 <div className="text-center mb-10 mt-6">
                     <div className="w-20 h-20 rounded-3xl mx-auto mb-6 flex items-center justify-center rotate-3 shadow-2xl"

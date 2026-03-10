@@ -2,22 +2,46 @@ import { Metadata } from 'next';
 import WatermarkApp from './WatermarkApp';
 
 export const metadata: Metadata = {
-    title: 'إضافة علامة مائية للصور اونلاين مجاناً | أدواتك',
-    description: 'أضف نصاً أو شعاراً كعلامة مائية لصورك بسهولة. أداة مجانية لحماية حقوق ملكية صورك، تعمل بالكامل داخل المتصفح وبدقة عالية.',
-    keywords: ['علامة مائية', 'إضافة لوجو للصور', 'حماية الصور', 'watermark online', 'أدواتك', 'إضافة نص للصور'],
+    title: 'إضافة علامة مائية للصور اونلاين (Watermark) | أدواتك',
+    description: 'احمِ حقوق صورك بإضافة علامة مائية (نص أو شعار) بسهولة وسرعة. أداة مجانية واحترافية تعمل بالكامل داخل متصفحك لضمان أقصى درجات الخصوصية.',
+    keywords: [
+        'إضافة علامة مائية للصور', 'Watermark online free', 'حماية حقوق الصور',
+        'وضع شعار على الصور', 'إضافة نص للصور اونلاين', 'أدواتك'
+    ],
+    alternates: {
+        canonical: 'https://tools.daleel-al-suez.com/tools/watermark',
+    },
     openGraph: {
-        title: 'إضافة علامة مائية للصور اونلاين مجاناً | أدواتك',
-        description: 'أضف نصاً أو شعاراً كعلامة مائية لصورك بسهولة وبدقة عالية.',
+        title: 'إضافة علامة مائية للصور اونلاين مجاناً وباحترافية | أدواتك',
+        description: 'أضف نصاً أو شعاراً كعلامة مائية لصورك بسهولة وقم بحماية حقوقك بضغطة زر.',
         url: 'https://tools.daleel-al-suez.com/tools/watermark',
         type: 'website',
     },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'إضافة علامة مائية للصور اونلاين مجاناً | أدواتك',
-        description: 'أضف نصاً أو شعاراً كعلامة مائية لصورك بسهولة وبدقة عالية.',
-    }
 };
 
-export default function WatermarkPage() {
-    return <WatermarkApp />;
+export default function Page() {
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "أداة العلامة المائية",
+        "operatingSystem": "All",
+        "applicationCategory": "UtilitiesApplication",
+        "description": "أداة مجانية وسريعة لحماية الصور بإضافة علامات مائية نصية أو صورية.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EGP"
+        },
+        "featureList": "إضافة شعار، إضافة نصوص، معالجة على المتصفح"
+    };
+
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <WatermarkApp />
+        </>
+    );
 }

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import { ArrowLeft, User, CalendarDays, Clock, Heart } from 'lucide-react';
 
 export default function AgePage() {
@@ -205,7 +204,6 @@ export default function AgePage() {
                     </div>
                 </div>
 
-                <AdBanner />
             </div>
         </PageLayout>
     );

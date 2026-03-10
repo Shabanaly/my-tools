@@ -3,7 +3,6 @@
 import { useState, useRef } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import { ArrowLeft, ImageIcon, UploadCloud, RefreshCw, CheckCircle, Download } from 'lucide-react';
 
 type FileState = {
@@ -250,8 +249,7 @@ export default function ImageConverterPage() {
                     </p>
                 </div>
 
-                <AdBanner />
             </div>
-        </PageLayout>
+        </PageLayout >
     );
 }

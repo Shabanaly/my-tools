@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import { Calculator, ArrowLeft } from 'lucide-react';
 
 export default function InstallmentPage() {
@@ -109,7 +108,6 @@ export default function InstallmentPage() {
                         )}
                     </div>
                 </div>
-                <AdBanner />
             </div>
         </PageLayout>
     );

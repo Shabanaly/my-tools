@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import { Coins, ArrowLeft } from 'lucide-react';
 
 export default function ZakatPage() {
@@ -97,7 +96,6 @@ export default function ZakatPage() {
                         )}
                     </div>
                 </div>
-                <AdBanner />
             </div>
         </PageLayout>
     );

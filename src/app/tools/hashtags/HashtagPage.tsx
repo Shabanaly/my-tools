@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import { ArrowLeft, Hash, Copy, CheckCircle2, Search, Zap, TrendingUp } from 'lucide-react';
 
 const hashtagCategories = {
@@ -144,7 +143,6 @@ export default function HashtagPage() {
                     </p>
                 </div>
 
-                <AdBanner />
             </div>
         </PageLayout>
     );

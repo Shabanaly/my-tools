@@ -2,22 +2,46 @@ import { Metadata } from 'next';
 import HashtagPage from './HashtagPage';
 
 export const metadata: Metadata = {
-    title: 'مولد الهاشتاجات (Hashtag Generator) | أدواتك',
-    description: 'احصل على أفضل الهاشتاجات الرائجة لمنصات التواصل الاجتماعي (إنستجرام، تيك توك، تويتر) لزيادة التفاعل والمشاهدات بضغطة زر.',
-    keywords: ['مولد هاشتاجات', 'هاشتاجات انستقرام', 'هاشتاجات تيك توك', 'Hashtag Generator', 'زيادة المتابعين', 'أدواتك'],
+    title: 'مولد الهاشتاجات الرائجة (Hashtag Generator) | أدواتك',
+    description: 'احصل على أقوى الهاشتاجات الرائجة لعام 2024 لزيادة تفاعل منشوراتك على إنستاجرام، تيك توك، وإكس. أداة توليد هاشتاجات سريعة وفعالة بضغطة زر.',
+    keywords: [
+        'مولد هاشتاجات', 'هاشتاجات انستقرام نشطة', 'هاشتاجات تيك توك ترند',
+        'Hashtag Generator 2024', 'زيادة المشاهدات', 'أدواتك'
+    ],
+    alternates: {
+        canonical: 'https://tools.daleel-al-suez.com/tools/hashtags',
+    },
     openGraph: {
-        title: 'مولد الهاشتاجات (Hashtag Generator) | أدواتك',
-        description: 'احصل على أفضل الهاشتاجات الرائجة لزيادة التفاعل والمشاهدات على السوشيال ميديا.',
+        title: 'مولد الهاشتاجات الرائجة لزيادة التفاعل | أدواتك',
+        description: 'انسخ أفضل الهاشتاجات لبوستاتك لزيادة الوصول والمتابعين مجاناً.',
         url: 'https://tools.daleel-al-suez.com/tools/hashtags',
         type: 'website',
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'مولد الهاشتاجات | أدواتك',
-        description: 'أفضل الهاشتاجات الرائجة جاهزة للنسخ لمنصات التواصل الاجتماعي.',
     },
 };
 
 export default function Page() {
-    return <HashtagPage />;
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "محرك توليد الهاشتاجات",
+        "operatingSystem": "All",
+        "applicationCategory": "UtilitiesApplication",
+        "description": "أداة ذكية لتوليد ونسخ الهاشتاجات الأكثر رواجاً لمنصات التواصل الاجتماعي.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EGP"
+        },
+        "featureList": "هاشتاجات انستجرام، هاشتاجات تيك توك، نسخ فوري"
+    };
+
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <HashtagPage />
+        </>
+    );
 }

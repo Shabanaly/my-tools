@@ -3,7 +3,6 @@
 import { useState, useRef } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
-import AdBanner from '@/components/AdBanner';
 import {
     ArrowLeft, UploadCloud, Maximize, CheckCircle, Download,
     Settings, X, Loader2, DownloadCloud, Image as ImageIcon,
@@ -286,8 +285,6 @@ export default function ResizerApp() {
                     <ArrowLeft className="w-4 h-4" />
                     العودة للرئيسية
                 </Link>
-
-                <AdBanner />
 
                 {/* ── HEADER ── */}
                 <div className="text-center mb-10">

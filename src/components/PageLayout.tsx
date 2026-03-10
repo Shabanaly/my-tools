@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { Sparkles } from 'lucide-react';
+import AdBanner from '@/components/AdBanner';
 
 interface PageProps {
     children?: React.ReactNode;
@@ -35,18 +36,47 @@ export default function PageLayout({ children, className }: PageProps) {
                 </div>
             </header>
 
+            <div className="max-w-6xl mx-auto w-full px-6 pt-6 -mb-8">
+                <AdBanner />
+            </div>
+
             {/* ── Main ── */}
             <main className={cn('flex-1', className)}>
                 {children}
             </main>
 
+            <div className="max-w-6xl mx-auto w-full px-6 pb-6 -mt-8 text-center">
+                <AdBanner />
+            </div>
+
             {/* ── Footer ── */}
-            <footer className="py-10" style={{ borderTop: '1px solid var(--border)' }}>
-                <div className="max-w-6xl mx-auto px-6 text-center space-y-2">
-                    <p className="font-black text-base gradient-text">أدواتك</p>
-                    <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-                        © {new Date().getFullYear()} — أدوات مجانية
-                    </p>
+            <footer className="py-12 bg-white mt-auto" style={{ borderTop: '1px solid rgba(232,234,240,0.8)' }}>
+                <div className="max-w-6xl mx-auto px-6">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
+                        <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-lg flex items-center justify-center"
+                                style={{ background: 'linear-gradient(135deg, #3b5bdb, #7048e8)' }}>
+                                <Sparkles className="w-4 h-4 text-white" />
+                            </div>
+                            <span className="text-lg font-black gradient-text">أدواتك</span>
+                        </div>
+
+                        <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4">
+                            <Link href="/about" className="text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors">من نحن</Link>
+                            <Link href="/privacy" className="text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors">سياسة الخصوصية</Link>
+                            <Link href="/terms" className="text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors">شروط الاستخدام</Link>
+                            <Link href="/contact" className="text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors">اتصل بنا</Link>
+                        </nav>
+                    </div>
+
+                    <div className="pt-8 border-t border-gray-50 flex flex-col md:flex-row items-center justify-between gap-4">
+                        <p className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
+                            © {new Date().getFullYear()} — جميع الحقوق محفوظة لموقع أدواتك
+                        </p>
+                        <p className="text-xs font-bold text-gray-400">
+                            صنع بكل ❤️ لخدمة العالم العربي
+                        </p>
+                    </div>
                 </div>
             </footer>
         </div>

@@ -2,22 +2,46 @@ import { Metadata } from 'next';
 import CropperApp from './CropperApp';
 
 export const metadata: Metadata = {
-    title: 'قص الصور اونلاين بصيغ JPG و PNG | أدواتك',
-    description: 'قص أجزاء من صورك بدقة عالية وأبعاد مخصصة. أداة قص مجانية وسريعة تدعم تحديد أبعاد ثابتة مثل المربع أو المستطيل بدون رفع الصورة لأي سيرفر.',
-    keywords: ['قص الصور', 'اقتصاص الصورة', 'تعديل مقاسات الصور', 'قص اونلاين', 'أدواتك', 'crop image'],
+    title: 'قص الصور اونلاين مجاناً (Image Cropper) | أدواتك',
+    description: 'أداة قص الصور الاحترافية. حدد الأبعاد التي تريدها أو استخدم المقاسات الجاهزة (1:1, 16:9) وقص صورك بدقة فائقة وبشخصية آمنة تماماً على جهازك.',
+    keywords: [
+        'قص الصور اونلاين', 'اقتصاص الصور', 'Image Cropper free',
+        'تعديل ابعاد الصور', 'قص الصور بجودة عالية', 'أدواتك'
+    ],
+    alternates: {
+        canonical: 'https://tools.daleel-al-suez.com/tools/crop',
+    },
     openGraph: {
-        title: 'قص الصور اونلاين بدون رفع للسيرفر | أدواتك',
-        description: 'قص أجزاء من صورك بدقة عالية وأبعاد مخصصة مجاناً.',
+        title: 'قص الصور اونلاين بدقة فائقة وبأمان | أدواتك',
+        description: 'أداة بسيطة واحترافية لقص صورك بالمقاسات التي تريدها وبدون رفعها لأي سيرفر.',
         url: 'https://tools.daleel-al-suez.com/tools/crop',
         type: 'website',
     },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'قص الصور اونلاين بدون رفع للسيرفر | أدواتك',
-        description: 'قص أجزاء من صورك بدقة عالية وأبعاد مخصصة مجاناً.',
-    }
 };
 
-export default function CropPage() {
-    return <CropperApp />;
+export default function Page() {
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "أداة قص الصور",
+        "operatingSystem": "All",
+        "applicationCategory": "UtilitiesApplication",
+        "description": "أداة سريعة لقص الصور وتغيير أبعادها داخل المتصفح مع الحفاظ على الجودة.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EGP"
+        },
+        "featureList": "اقتصاص حر، أبعاد ثابتة، حفظ بجودة عالية"
+    };
+
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <CropperApp />
+        </>
+    );
 }
