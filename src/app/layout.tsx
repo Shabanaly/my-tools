@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     title: 'أدواتك',
-    statusBarStyle: 'default',
+    statusBarStyle: 'black-translucent',
   },
   metadataBase: new URL('https://tools.daleel-al-suez.com'),
   alternates: {
