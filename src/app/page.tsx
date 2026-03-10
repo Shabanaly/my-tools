@@ -2,141 +2,30 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PageLayout from '@/components/PageLayout';
 import AdBanner from '@/components/AdBanner';
-import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet, Hash, Layers, DownloadCloud, Type, Maximize, Crop, Scissors, LayoutGrid, SmilePlus } from 'lucide-react';
+import {
+  Calculator, Coins, CircleDollarSign, ImageDown, FileImage,
+  DollarSign, CalendarClock, ImageIcon, Wallet, Hash, Layers,
+  DownloadCloud, Type, Maximize, Crop, Scissors, LayoutGrid,
+  SmilePlus, Image as ImageIconLucide, CreditCard, FileText,
+  Sparkles, MousePointer2
+} from 'lucide-react';
 
 const tools = [
+  // 🖼️ أدوات الصور
   {
-    id: 'currency',
-    title: 'تحويل العملات',
-    description: 'أسعار الصرف اللحظية لأهم العملات بخطوة واحدة',
-    icon: DollarSign,
-    path: '/tools/currency',
-    gradient: 'linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)',
-    shadow: 'rgba(13,148,136,0.25)',
-    accent: '#0d9488',
-  },
-  {
-    id: 'ocr',
-    title: 'استخراج النص من الصور',
-    description: 'حول أي صورة لنص مكتوب باللغة العربية والإنجليزية',
-    icon: Type,
-    path: '/tools/ocr',
-    gradient: 'linear-gradient(135deg, #38bdf8 0%, #0369a1 100%)',
-    shadow: 'rgba(56,189,248,0.25)',
-    accent: '#38bdf8',
-  },
-  {
-    id: 'downloader',
-    title: 'تحميل الفيديوهات',
-    description: 'تنزيل فيديوهات من يوتيوب وتيك توك بدون علامة مائية',
-    icon: DownloadCloud,
-    path: '/tools/downloader',
-    gradient: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
-    shadow: 'rgba(139,92,246,0.25)',
-    accent: '#8b5cf6',
-  },
-  {
-    id: 'pdf-merge',
-    title: 'دمج وتجميع الـ PDF',
-    description: 'اجمع عدة مستندات في ملف واحد بأمان كامل',
-    icon: Layers,
-    path: '/tools/pdf-merge',
-    gradient: 'linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)',
-    shadow: 'rgba(225,29,72,0.25)',
-    accent: '#e11d48',
-  },
-  {
-    id: 'hashtags',
-    title: 'مولد الهاشتاجات',
-    description: 'هاشتاجات رائجة وجاهزة لزيادة المشاهدات',
-    icon: Hash,
-    path: '/tools/hashtags',
-    gradient: 'linear-gradient(135deg, #f59e0b 0%, #ec4899 100%)',
-    shadow: 'rgba(236,72,153,0.25)',
-    accent: '#ec4899',
-  },
-  {
-    id: 'salary',
-    title: 'حاسبة الراتب',
-    description: 'احسب راتبك الصافي بدقة بعد الضرائب والتأمينات',
-    icon: Wallet,
-    path: '/tools/salary',
-    gradient: 'linear-gradient(135deg, #16a34a 0%, #22c55e 100%)',
-    shadow: 'rgba(22,163,74,0.25)',
-    accent: '#16a34a',
-  },
-  {
-    id: 'age',
-    title: 'حاسبة العمر',
-    description: 'احسب عمرك بدقة ومتى موعد ميلادك القادم',
-    icon: CalendarClock,
-    path: '/tools/age',
-    gradient: 'linear-gradient(135deg, #d946ef 0%, #c026d3 100%)',
-    shadow: 'rgba(217,70,239,0.25)',
-    accent: '#d946ef',
-  },
-  {
-    id: 'converter',
-    title: 'تحويل صيغ الصور',
-    description: 'حوّل صور WebP إلى JPG/PNG في ثوانٍ مجاناً',
-    icon: ImageIcon,
-    path: '/tools/image-converter',
-    gradient: 'linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%)',
-    shadow: 'rgba(14,165,233,0.25)',
-    accent: '#0ea5e9',
-  },
-  {
-    id: 'installment',
-    title: 'حاسبة التقسيط',
-    description: 'احسب القسط الشهري لأي مبلغ بسهولة ودقة',
-    icon: Calculator,
-    path: '/tools/installment',
-    gradient: 'linear-gradient(135deg, #3b5bdb 0%, #4c6ef5 100%)',
-    shadow: 'rgba(59,91,219,0.25)',
-    accent: '#3b5bdb',
-  },
-  {
-    id: 'zakat',
-    title: 'حاسبة الزكاة',
-    description: 'احسب زكاة مالك وفقاً للشريعة الإسلامية',
-    icon: Coins,
-    path: '/tools/zakat',
-    gradient: 'linear-gradient(135deg, #0ca678 0%, #20c997 100%)',
-    shadow: 'rgba(12,166,120,0.25)',
-    accent: '#0ca678',
-  },
-  {
-    id: 'gold',
-    title: 'حاسبة الذهب',
-    description: 'تابع أسعار الذهب واحسب قيمة مدخراتك',
-    icon: CircleDollarSign,
-    path: '/tools/gold',
-    gradient: 'linear-gradient(135deg, #e67700 0%, #f59f00 100%)',
-    shadow: 'rgba(245,159,0,0.25)',
-    accent: '#e67700',
-  },
-  {
-    id: 'compress',
-    title: 'ضغط الصور',
-    description: 'صغّر حجم الصور بدون فقدان الجودة لتوفير المساحة',
-    icon: ImageDown,
-    path: '/tools/compress',
-    gradient: 'linear-gradient(135deg, #7048e8 0%, #9775fa 100%)',
-    shadow: 'rgba(112,72,232,0.25)',
-    accent: '#7048e8',
-  },
-  {
-    id: 'pdf',
-    title: 'تحويل صور إلى PDF',
-    description: 'ادمج مجموعة صور في ملف PDF واحد بضغطة زر',
-    icon: FileImage,
-    path: '/tools/pdf',
-    gradient: 'linear-gradient(135deg, #e03131 0%, #f03e3e 100%)',
-    shadow: 'rgba(224,49,49,0.25)',
-    accent: '#e03131',
+    id: 'remove-bg',
+    category: 'images',
+    title: 'إزالة الخلفية بالذكاء الاصطناعي',
+    description: 'أزل خلفية الصور بدقة فائقة بدون رفع الصورة لأي سيرفر بدعم AI',
+    icon: Scissors,
+    path: '/tools/remove-bg',
+    gradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+    shadow: 'rgba(16,185,129,0.25)',
+    accent: '#10b981',
   },
   {
     id: 'resize',
+    category: 'images',
     title: 'تغيير حجم الصور',
     description: 'غيّر أبعاد صورك بدقة وسهولة لتناسب أي منصة',
     icon: Maximize,
@@ -147,6 +36,7 @@ const tools = [
   },
   {
     id: 'crop',
+    category: 'images',
     title: 'قص الصور',
     description: 'حدد الجزء الذي تريده من صورتك واقطع الباقي بدقة',
     icon: Crop,
@@ -156,17 +46,19 @@ const tools = [
     accent: '#f59e0b',
   },
   {
-    id: 'remove-bg',
-    title: 'إزالة الخلفية بالذكاء الاصطناعي',
-    description: 'أزل خلفية الصور بدقة فائقة بدون رفع الصورة لأي سيرفر بدعم AI',
-    icon: Scissors,
-    path: '/tools/remove-bg',
-    gradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-    shadow: 'rgba(16,185,129,0.25)',
-    accent: '#10b981',
+    id: 'compress',
+    category: 'images',
+    title: 'ضغط الصور',
+    description: 'صغّر حجم الصور بدون فقدان الجودة لتوفير المساحة',
+    icon: ImageDown,
+    path: '/tools/compress',
+    gradient: 'linear-gradient(135deg, #7048e8 0%, #9775fa 100%)',
+    shadow: 'rgba(112,72,232,0.25)',
+    accent: '#7048e8',
   },
   {
     id: 'watermark',
+    category: 'images',
     title: 'إضافة علامة مائية',
     description: 'احمِ حقوق صورك بإضافة نص أو شعار كعلامة مائية بسهولة',
     icon: LayoutGrid,
@@ -177,6 +69,7 @@ const tools = [
   },
   {
     id: 'meme',
+    category: 'images',
     title: 'صانع الميمز',
     description: 'اصنع ميمز مضحكة واحترافية بسهولة وشاركها مع أصدقائك',
     icon: SmilePlus,
@@ -185,6 +78,148 @@ const tools = [
     shadow: 'rgba(217,70,239,0.25)',
     accent: '#d946ef',
   },
+  {
+    id: 'converter',
+    category: 'images',
+    title: 'تحويل صيغ الصور',
+    description: 'حوّل صور WebP إلى JPG/PNG في ثوانٍ مجاناً',
+    icon: ImageIcon,
+    path: '/tools/image-converter',
+    gradient: 'linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%)',
+    shadow: 'rgba(14,165,233,0.25)',
+    accent: '#0ea5e9',
+  },
+  {
+    id: 'ocr',
+    category: 'content',
+    title: 'استخراج النص من الصور',
+    description: 'حول أي صورة لنص مكتوب باللغة العربية والإنجليزية',
+    icon: Type,
+    path: '/tools/ocr',
+    gradient: 'linear-gradient(135deg, #38bdf8 0%, #0369a1 100%)',
+    shadow: 'rgba(56,189,248,0.25)',
+    accent: '#38bdf8',
+  },
+
+  // 💰 أدوات مالية
+  {
+    id: 'installment',
+    category: 'financial',
+    title: 'حاسبة التقسيط',
+    description: 'احسب القسط الشهري لأي مبلغ بسهولة ودقة',
+    icon: Calculator,
+    path: '/tools/installment',
+    gradient: 'linear-gradient(135deg, #3b5bdb 0%, #4c6ef5 100%)',
+    shadow: 'rgba(59,91,219,0.25)',
+    accent: '#3b5bdb',
+  },
+  {
+    id: 'currency',
+    category: 'financial',
+    title: 'تحويل العملات',
+    description: 'أسعار الصرف اللحظية لأهم العملات بخطوة واحدة',
+    icon: DollarSign,
+    path: '/tools/currency',
+    gradient: 'linear-gradient(135deg, #0d9488 0%, #14b8a6 100%)',
+    shadow: 'rgba(13,148,136,0.25)',
+    accent: '#0d9488',
+  },
+  {
+    id: 'zakat',
+    category: 'financial',
+    title: 'حاسبة الزكاة',
+    description: 'احسب زكاة مالك وفقاً للشريعة الإسلامية',
+    icon: Coins,
+    path: '/tools/zakat',
+    gradient: 'linear-gradient(135deg, #0ca678 0%, #20c997 100%)',
+    shadow: 'rgba(12,166,120,0.25)',
+    accent: '#0ca678',
+  },
+  {
+    id: 'gold',
+    category: 'financial',
+    title: 'حاسبة الذهب',
+    description: 'تابع أسعار الذهب واحسب قيمة مدخراتك',
+    icon: CircleDollarSign,
+    path: '/tools/gold',
+    gradient: 'linear-gradient(135deg, #e67700 0%, #f59f00 100%)',
+    shadow: 'rgba(245,159,0,0.25)',
+    accent: '#e67700',
+  },
+  {
+    id: 'salary',
+    category: 'financial',
+    title: 'حاسبة الراتب',
+    description: 'احسب راتبك الصافي بدقة بعد الضرائب والتأمينات',
+    icon: Wallet,
+    path: '/tools/salary',
+    gradient: 'linear-gradient(135deg, #16a34a 0%, #22c55e 100%)',
+    shadow: 'rgba(22,163,74,0.25)',
+    accent: '#16a34a',
+  },
+
+  // 📂 أدوات الملفات والمحتوى
+  {
+    id: 'pdf',
+    category: 'content',
+    title: 'تحويل صور إلى PDF',
+    description: 'ادمج مجموعة صور في ملف PDF واحد بضغطة زر',
+    icon: FileImage,
+    path: '/tools/pdf',
+    gradient: 'linear-gradient(135deg, #e03131 0%, #f03e3e 100%)',
+    shadow: 'rgba(224,49,49,0.25)',
+    accent: '#e03131',
+  },
+  {
+    id: 'pdf-merge',
+    category: 'content',
+    title: 'دمج وتجميع الـ PDF',
+    description: 'اجمع عدة مستندات في ملف واحد بأمان كامل',
+    icon: Layers,
+    path: '/tools/pdf-merge',
+    gradient: 'linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)',
+    shadow: 'rgba(225,29,72,0.25)',
+    accent: '#e11d48',
+  },
+  {
+    id: 'downloader',
+    category: 'content',
+    title: 'تحميل الفيديوهات',
+    description: 'تنزيل فيديوهات من يوتيوب وتيك توك بدون علامة مائية',
+    icon: DownloadCloud,
+    path: '/tools/downloader',
+    gradient: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
+    shadow: 'rgba(139,92,246,0.25)',
+    accent: '#8b5cf6',
+  },
+  {
+    id: 'hashtags',
+    category: 'content',
+    title: 'مولد الهاشتاجات',
+    description: 'هاشتاجات رائجة وجاهزة لزيادة المشاهدات',
+    icon: Hash,
+    path: '/tools/hashtags',
+    gradient: 'linear-gradient(135deg, #f59e0b 0%, #ec4899 100%)',
+    shadow: 'rgba(236,72,153,0.25)',
+    accent: '#ec4899',
+  },
+  {
+    id: 'age',
+    category: 'content',
+    title: 'حاسبة العمر',
+    description: 'احسب عمرك بدقة ومتى موعد ميلادك القادم',
+    icon: CalendarClock,
+    path: '/tools/age',
+    gradient: 'linear-gradient(135deg, #d946ef 0%, #c026d3 100%)',
+    shadow: 'rgba(217,70,239,0.25)',
+    accent: '#d946ef',
+  },
+];
+
+const categories = [
+  { id: 'images', title: 'أدوات الصور', icon: ImageIconLucide, color: '#10b981' },
+  { id: 'financial', title: 'الأدوات المالية', icon: CreditCard, color: '#3b5bdb' },
+  { id: 'content', title: 'أدوات الملفات والمحتوى', icon: FileText, color: '#8b5cf6' },
 ];
 
 export default function Home() {
@@ -227,36 +262,50 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── Tools Grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tools.map((tool) => (
-            <Link key={tool.id} href={tool.path}>
-              <div className="group glass-card rounded-3xl p-7 cursor-pointer transition-all duration-300 hover:-translate-y-2"
-                style={{ '--accent': tool.accent } as React.CSSProperties}>
-                {/* Icon */}
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3"
-                  style={{ background: tool.gradient, boxShadow: `0 8px 24px ${tool.shadow}` }}>
-                  <tool.icon className="w-7 h-7 text-white" />
-                </div>
-
-                {/* Content */}
-                <h3 className="text-xl font-black mb-2" style={{ color: 'var(--text-primary)' }}>
-                  {tool.title}
-                </h3>
-                <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                  {tool.description}
-                </p>
-
-                {/* CTA */}
-                <div className="mt-6 flex items-center gap-2 text-sm font-bold transition-all duration-300 group-hover:gap-3"
-                  style={{ color: tool.accent }}>
-                  استخدم الآن
-                  <span className="text-lg transition-transform duration-300 group-hover:-translate-x-1">←</span>
-                </div>
+        {/* ── Tools by Category ── */}
+        {categories.map((cat) => (
+          <section key={cat.id} className="mb-20 last:mb-0">
+            <div className="flex items-center gap-4 mb-10 pb-4 border-b border-gray-100">
+              <div className="p-3 rounded-2xl bg-white shadow-sm border border-gray-100" style={{ color: cat.color }}>
+                <cat.icon className="w-8 h-8" />
               </div>
-            </Link>
-          ))}
-        </div>
+              <div>
+                <h2 className="text-3xl font-black text-gray-800 mb-1">{cat.title}</h2>
+                <div className="h-1.5 w-12 rounded-full" style={{ background: cat.color }}></div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {tools.filter(t => t.category === cat.id).map((tool) => (
+                <Link key={tool.id} href={tool.path}>
+                  <div className="group glass-card rounded-3xl p-7 cursor-pointer transition-all duration-300 hover:-translate-y-2 h-full flex flex-col"
+                    style={{ '--accent': tool.accent } as React.CSSProperties}>
+                    {/* Icon */}
+                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shrink-0"
+                      style={{ background: tool.gradient, boxShadow: `0 8px 24px ${tool.shadow}` }}>
+                      <tool.icon className="w-7 h-7 text-white" />
+                    </div>
+
+                    {/* Content */}
+                    <h3 className="text-xl font-black mb-2" style={{ color: 'var(--text-primary)' }}>
+                      {tool.title}
+                    </h3>
+                    <p className="text-base leading-relaxed flex-grow" style={{ color: 'var(--text-secondary)' }}>
+                      {tool.description}
+                    </p>
+
+                    {/* CTA */}
+                    <div className="mt-6 flex items-center gap-2 text-sm font-bold transition-all duration-300 group-hover:gap-3"
+                      style={{ color: tool.accent }}>
+                      استخدم الآن
+                      <span className="text-lg transition-transform duration-300 group-hover:-translate-x-1">←</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ))}
 
         <AdBanner className="mt-20" />
       </div>
