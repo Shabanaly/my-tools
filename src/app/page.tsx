@@ -290,7 +290,7 @@ export default function Home() {
                     <h3 className="text-xl font-black mb-2" style={{ color: 'var(--text-primary)' }}>
                       {tool.title}
                     </h3>
-                    <p className="text-base leading-relaxed flex-grow" style={{ color: 'var(--text-secondary)' }}>
+                    <p className="text-base leading-relaxed grow" style={{ color: 'var(--text-secondary)' }}>
                       {tool.description}
                     </p>
 

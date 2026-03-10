@@ -232,7 +232,7 @@ export default function MemeApp() {
 
                                     {/* Font Settings */}
                                     <div>
-                                        <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                                        <label className="text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
                                             <TypeIcon className="w-4 h-4 text-purple-400" /> نوع الخط
                                         </label>
                                         <select
