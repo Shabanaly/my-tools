@@ -65,19 +65,19 @@ export default function PageLayout({ children, className, hideTopAd }: PageProps
                         </div>
 
                         <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4" aria-label="روابط سريعة">
-                            <Link href="/about" className="text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors">من نحن</Link>
-                            <Link href="/privacy" className="text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors">سياسة الخصوصية</Link>
-                            <Link href="/terms" className="text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors">شروط الاستخدام</Link>
-                            <Link href="/contact" className="text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors">اتصل بنا</Link>
+                            <Link href="/about" className="text-sm font-bold text-gray-600 hover:text-blue-700 transition-colors">من نحن</Link>
+                            <Link href="/privacy" className="text-sm font-bold text-gray-600 hover:text-blue-700 transition-colors">سياسة الخصوصية</Link>
+                            <Link href="/terms" className="text-sm font-bold text-gray-600 hover:text-blue-700 transition-colors">شروط الاستخدام</Link>
+                            <Link href="/contact" className="text-sm font-bold text-gray-600 hover:text-blue-700 transition-colors">اتصل بنا</Link>
                         </nav>
                     </div>
 
                     <div className="pt-8 border-t border-gray-50 flex flex-col md:flex-row items-center justify-between gap-4">
-                        <p className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>
+                        <p className="text-sm font-bold text-gray-700">
                             © {new Date().getFullYear()} — جميع الحقوق محفوظة لموقع أدواتك
                         </p>
-                        <p className="text-xs font-bold text-gray-400">
-                            صنع بكل ❤️ لخدمة العالم العربي
+                        <p className="text-xs font-black text-gray-600">
+                            صنع بكل ❤️ لخدمة المصريين
                         </p>
                     </div>
                 </div>
