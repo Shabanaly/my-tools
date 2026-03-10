@@ -1,9 +1,19 @@
+import { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
 import { Mail, MessageSquare, MapPin, Send, Instagram, Twitter, Facebook } from 'lucide-react';
 
-export const metadata = {
+export const metadata: Metadata = {
     title: 'اتصل بنا | أدواتك',
     description: 'لديك اقتراح أو واجهت مشكلة؟ نحن هنا للمساعدة. تواصل معنا عبر البريد الإلكتروني أو قنوات التواصل الاجتماعي.',
+    alternates: {
+        canonical: 'https://tools.daleel-al-suez.com/contact',
+    },
+    openGraph: {
+        title: 'اتصل بنا | أدواتك',
+        description: 'تواصل معنا عبر البريد الإلكتروني أو قنوات التواصل الاجتماعي.',
+        url: 'https://tools.daleel-al-suez.com/contact',
+        type: 'website',
+    },
 };
 
 export default function ContactPage() {

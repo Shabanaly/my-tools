@@ -1,9 +1,19 @@
+import { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
 import { Gavel, Scale, FileText, Ban, AlertTriangle } from 'lucide-react';
 
-export const metadata = {
+export const metadata: Metadata = {
     title: 'شروط الاستخدام | أدواتك',
-    description: 'شروط وبنود استخدام موقع أدواتك. يرجى قراءة الشروط قبل البدء في استخدام خدماتنا.',
+    description: 'شروط وبنود استخدام موقع أدواتك. يرجى قراءة الشروط قبل البدء في استخدام خدماتنا المجانية.',
+    alternates: {
+        canonical: 'https://tools.daleel-al-suez.com/terms',
+    },
+    openGraph: {
+        title: 'شروط الاستخدام | أدواتك',
+        description: 'شروط وبنود استخدام موقع أدواتك.',
+        url: 'https://tools.daleel-al-suez.com/terms',
+        type: 'website',
+    },
 };
 
 export default function TermsPage() {

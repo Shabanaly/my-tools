@@ -223,26 +223,52 @@ const categories = [
 ];
 
 export default function Home() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "أدواتك",
-    "url": "https://tools.daleel-al-suez.com",
-    "description": "أرقى وأسرع مجموعة أدوات مجانية وقوية للمهنيين والمستخدمين في مصر والوطن العربي.",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://tools.daleel-al-suez.com/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    },
-    "publisher": {
-      "@type": "Organization",
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
       "name": "أدواتك",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://tools.daleel-al-suez.com/icon.svg"
+      "url": "https://tools.daleel-al-suez.com",
+      "description": "أرقى وأسرع مجموعة أدوات مجانية وقوية للمهنيين والمستخدمين في مصر والوطن العربي.",
+      "inLanguage": "ar",
+      "publisher": {
+        "@type": "Organization",
+        "name": "أدواتك",
+        "url": "https://tools.daleel-al-suez.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://tools.daleel-al-suez.com/icon.svg"
+        }
       }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "أدوات أدواتك المجانية",
+      "description": "مجموعة أدوات مجانية لمعالجة الصور، تحويل الملفات، والحسابات المالية",
+      "numberOfItems": 19,
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "إزالة الخلفية بالذكاء الاصطناعي", "url": "https://tools.daleel-al-suez.com/tools/remove-bg" },
+        { "@type": "ListItem", "position": 2, "name": "تغيير حجم الصور", "url": "https://tools.daleel-al-suez.com/tools/resize" },
+        { "@type": "ListItem", "position": 3, "name": "قص الصور", "url": "https://tools.daleel-al-suez.com/tools/crop" },
+        { "@type": "ListItem", "position": 4, "name": "ضغط الصور", "url": "https://tools.daleel-al-suez.com/tools/compress" },
+        { "@type": "ListItem", "position": 5, "name": "إضافة علامة مائية", "url": "https://tools.daleel-al-suez.com/tools/watermark" },
+        { "@type": "ListItem", "position": 6, "name": "صانع الميمز", "url": "https://tools.daleel-al-suez.com/tools/meme" },
+        { "@type": "ListItem", "position": 7, "name": "تحويل صيغ الصور", "url": "https://tools.daleel-al-suez.com/tools/image-converter" },
+        { "@type": "ListItem", "position": 8, "name": "استخراج النص من الصور (OCR)", "url": "https://tools.daleel-al-suez.com/tools/ocr" },
+        { "@type": "ListItem", "position": 9, "name": "حاسبة التقسيط", "url": "https://tools.daleel-al-suez.com/tools/installment" },
+        { "@type": "ListItem", "position": 10, "name": "تحويل العملات", "url": "https://tools.daleel-al-suez.com/tools/currency" },
+        { "@type": "ListItem", "position": 11, "name": "حاسبة الزكاة", "url": "https://tools.daleel-al-suez.com/tools/zakat" },
+        { "@type": "ListItem", "position": 12, "name": "حاسبة الذهب", "url": "https://tools.daleel-al-suez.com/tools/gold" },
+        { "@type": "ListItem", "position": 13, "name": "حاسبة الراتب المصري", "url": "https://tools.daleel-al-suez.com/tools/salary" },
+        { "@type": "ListItem", "position": 14, "name": "تحويل صور إلى PDF", "url": "https://tools.daleel-al-suez.com/tools/pdf" },
+        { "@type": "ListItem", "position": 15, "name": "دمج وتجميع الـ PDF", "url": "https://tools.daleel-al-suez.com/tools/pdf-merge" },
+        { "@type": "ListItem", "position": 16, "name": "تحميل الفيديوهات", "url": "https://tools.daleel-al-suez.com/tools/downloader" },
+        { "@type": "ListItem", "position": 17, "name": "مولد الهاشتاجات", "url": "https://tools.daleel-al-suez.com/tools/hashtags" },
+        { "@type": "ListItem", "position": 18, "name": "حاسبة العمر", "url": "https://tools.daleel-al-suez.com/tools/age" },
+      ]
     }
-  };
+  ];
 
   return (
     <PageLayout hideTopAd={true}>

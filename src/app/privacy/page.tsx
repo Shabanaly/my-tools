@@ -1,9 +1,19 @@
+import { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
 import { ShieldCheck, Eye, Lock, Globe, Cookie } from 'lucide-react';
 
-export const metadata = {
+export const metadata: Metadata = {
     title: 'سياسة الخصوصية | أدواتك',
-    description: 'تعرف على كيفية حماية خصوصيتك في موقع أدواتك. نحن نلتزم بأعلى معايير الأمان ومعالجة البيانات محلياً.',
+    description: 'تعرف على كيفية حماية خصوصيتك في موقع أدواتك. نحن نلتزم بأعلى معايير الأمان ومعالجة البيانات محلياً على جهازك.',
+    alternates: {
+        canonical: 'https://tools.daleel-al-suez.com/privacy',
+    },
+    openGraph: {
+        title: 'سياسة الخصوصية | أدواتك',
+        description: 'تعرف على كيفية حماية خصوصيتك والتزامنا بعدم رفع بياناتك لأي خادم.',
+        url: 'https://tools.daleel-al-suez.com/privacy',
+        type: 'website',
+    },
 };
 
 export default function PrivacyPage() {

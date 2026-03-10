@@ -1,9 +1,19 @@
+import { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
 import { Sparkles, Zap, Heart, Info, Target } from 'lucide-react';
 
-export const metadata = {
+export const metadata: Metadata = {
     title: 'من نحن | أدواتك',
-    description: 'تعرف على قصة موقع أدواتك ومهمتنا في توفير أدوات مجانية وسهلة الاستخدام للجميع.',
+    description: 'تعرف على قصة موقع أدواتك ومهمتنا في توفير أدوات مجانية وسهلة الاستخدام للجميع في مصر والوطن العربي.',
+    alternates: {
+        canonical: 'https://tools.daleel-al-suez.com/about',
+    },
+    openGraph: {
+        title: 'من نحن | أدواتك - أدوات مجانية للعرب',
+        description: 'تعرف على قصة موقع أدواتك ومهمتنا في توفير أدوات مجانية وسهلة الاستخدام للجميع.',
+        url: 'https://tools.daleel-al-suez.com/about',
+        type: 'website',
+    },
 };
 
 export default function AboutPage() {
