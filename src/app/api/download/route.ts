@@ -36,8 +36,8 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ message: data.message || 'فشل استخراج بيانات الفيديو من هذا الرابط' }, { status: 400 });
         }
 
-        const finalFormats: any[] = [];
-        const seenResolutions = new Set();
+        const audioMap = new Map();
+        const videoMap = new Map(); // resolution -> best media object
 
         const qualityMap: Record<string, string> = {
             'hd_no_watermark': 'فيديو عالي الجودة (بدون علامة مائية)',
@@ -54,45 +54,61 @@ export async function POST(req: NextRequest) {
 
         for (const m of data.medias) {
             const ext = m.extension?.toLowerCase();
-
-            // Strictly allow only MP4 and MP3 as requested
             if (ext !== 'mp4' && ext !== 'mp3') continue;
 
             const rawQuality = m.quality || '';
             const type = m.type || (ext === 'mp3' ? 'audio' : 'video');
 
-            // Deduplicate roughly by quality label and extension
-            const key = `${rawQuality}-${ext}`;
-            if (seenResolutions.has(key)) continue;
-            seenResolutions.add(key);
+            // Filter out "Video Only" (Muted) DASH streams as they don't work for direct download
+            const isMuted = /no[\s-]*audio|mute|video[\s-]*only/i.test(rawQuality);
+            if (type === 'video' && isMuted) continue;
 
-            // Translate or clean label
-            let label = qualityMap[rawQuality] || rawQuality;
-            if (type === 'audio' && !label.includes('صوتي')) {
-                label = `تحميل صوتي (${rawQuality})`;
+            if (type === 'audio') {
+                if (!audioMap.has(rawQuality)) {
+                    audioMap.set(rawQuality, {
+                        resolution: qualityMap[rawQuality] || `تحميل صوتي (${rawQuality})`,
+                        size: m.formattedSize || 'غير معروف',
+                        type: 'mp3',
+                        url: m.url,
+                        isAudio: true
+                    });
+                }
+                continue;
             }
 
-            finalFormats.push({
-                resolution: label,
-                size: m.formattedSize || 'غير معروف',
-                type: ext,
-                url: m.url,
-                isAudio: type === 'audio',
-                isNoWatermark: /no[\s-]*watermark/i.test(rawQuality) || rawQuality === 'hd_no_watermark'
-            });
+            // Video logic: Determine resolution key and score reliability
+            const resMatch = rawQuality.match(/(\d{3,4}p)/i);
+            const resKey = resMatch ? resMatch[1] : rawQuality;
+
+            // Reliability Scoring: Combined (+100) > No Watermark (+50)
+            let score = 0;
+            const isNoWatermark = /no[\s-]*watermark/i.test(rawQuality) || rawQuality.includes('hd_no');
+            if (isNoWatermark) score += 50;
+            if (!isMuted) score += 100;
+
+            const currentBest = videoMap.get(resKey);
+            if (!currentBest || score > currentBest.score) {
+                videoMap.set(resKey, {
+                    resolution: qualityMap[rawQuality] || `فيديو جودة ${resKey}${isNoWatermark ? ' (بدون علامة)' : ''}`,
+                    size: m.formattedSize || 'غير معروف',
+                    type: 'mp4',
+                    url: m.url,
+                    isNoWatermark,
+                    score,
+                    resValue: parseInt(resKey) || 0
+                });
+            }
         }
 
-        // Final sorting: Audio first, then No Watermark videos, then quality descending
-        const sortedFormats = finalFormats.sort((a, b) => {
-            if (a.isAudio && !b.isAudio) return -1;
-            if (!a.isAudio && b.isAudio) return 1;
-            if (a.isNoWatermark && !b.isNoWatermark) return -1;
-            if (!a.isNoWatermark && b.isNoWatermark) return 1;
+        // Final Sort: One best audio, then videos by resolution
+        const sortedFormats = [];
+        const bestAudio = Array.from(audioMap.values())[0];
+        if (bestAudio) sortedFormats.push(bestAudio);
 
-            const resA = parseInt(a.resolution.match(/\d+/)?.[0] || '0');
-            const resB = parseInt(b.resolution.match(/\d+/)?.[0] || '0');
-            return resB - resA;
-        });
+        const sortedVideos = Array.from(videoMap.values())
+            .sort((a, b) => b.resValue - a.resValue);
+
+        sortedFormats.push(...sortedVideos);
 
         const result = {
             title: data.title || 'فيديو من السوشيال ميديا',
