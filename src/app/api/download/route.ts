@@ -63,6 +63,9 @@ export async function POST(req: NextRequest) {
             const isMuted = /no[\s-]*audio|mute|video[\s-]*only/i.test(rawQuality);
             if (type === 'video' && isMuted) continue;
 
+            // Filter out restricted googlevideo.com links that cause 403 Forbidden errors
+            if (m.url.includes('googlevideo.com')) continue;
+
             if (type === 'audio') {
                 if (!audioMap.has(rawQuality)) {
                     audioMap.set(rawQuality, {
