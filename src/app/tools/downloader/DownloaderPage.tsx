@@ -2,7 +2,6 @@
 
 import { useState, useRef } from 'react';
 import Link from 'next/link';
-import PageLayout from '@/components/PageLayout';
 import {
     ArrowLeft, DownloadCloud, Link as LinkIcon, Youtube, Instagram, Twitter,
     Music2, Video, Play, X, AlertCircle, RefreshCw, CheckCircle, ChevronDown
@@ -207,138 +206,136 @@ export default function DownloaderPage() {
     const hasFormats = result && (result.videoFormats.length > 0 || result.audioFormats.length > 0);
 
     return (
-        <PageLayout>
-            <div className="max-w-4xl mx-auto px-4 py-12">
-                <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold mb-8 transition-colors hover:opacity-70" style={{ color: '#8b5cf6' }}>
-                    <ArrowLeft className="w-4 h-4" />
-                    العودة للرئيسية
-                </Link>
+        <div className="max-w-4xl mx-auto px-4 py-12">
+            <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold mb-8 transition-colors hover:opacity-70" style={{ color: '#8b5cf6' }}>
+                <ArrowLeft className="w-4 h-4" />
+                العودة للرئيسية
+            </Link>
 
-                <div className="glass-card rounded-3xl overflow-hidden mb-8 shadow-xl shadow-purple-900/5">
-                    {/* ── Header ── */}
-                    <div className="p-8 md:p-12 text-center text-white relative overflow-hidden"
-                        style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)' }}>
-                        <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/3" />
-                        <div className="absolute bottom-0 right-0 w-48 h-48 bg-fuchsia-500/20 rounded-full blur-2xl translate-y-1/2 translate-x-1/2" />
+            <div className="glass-card rounded-3xl overflow-hidden mb-8 shadow-xl shadow-purple-900/5">
+                {/* ── Header ── */}
+                <div className="p-8 md:p-12 text-center text-white relative overflow-hidden"
+                    style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)' }}>
+                    <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/3" />
+                    <div className="absolute bottom-0 right-0 w-48 h-48 bg-fuchsia-500/20 rounded-full blur-2xl translate-y-1/2 translate-x-1/2" />
 
-                        <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 mx-auto relative z-10 backdrop-blur-md shadow-lg border border-white/10">
-                            <DownloadCloud className="w-8 h-8 text-white" />
-                        </div>
-                        <h1 className="text-3xl md:text-4xl font-black mb-3 relative z-10">تحميل الفيديوهات الشامل</h1>
-                        <p className="text-purple-100 text-sm md:text-base font-medium relative z-10 max-w-xl mx-auto">
-                            ألصق رابط الفيديو، اختر الجودة، استعرض أو حمّل مباشرة
-                        </p>
-
-                        <div className="flex justify-center gap-4 mt-6 relative z-10">
-                            <Youtube className="w-5 h-5 text-white/70" />
-                            <Music2 className="w-5 h-5 text-white/70" />
-                            <Instagram className="w-5 h-5 text-white/70" />
-                            <Twitter className="w-5 h-5 text-white/70" />
-                        </div>
+                    <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6 mx-auto relative z-10 backdrop-blur-md shadow-lg border border-white/10">
+                        <DownloadCloud className="w-8 h-8 text-white" />
                     </div>
+                    <h1 className="text-3xl md:text-4xl font-black mb-3 relative z-10">تحميل الفيديوهات الشامل</h1>
+                    <p className="text-purple-100 text-sm md:text-base font-medium relative z-10 max-w-xl mx-auto">
+                        ألصق رابط الفيديو، اختر الجودة، استعرض أو حمّل مباشرة
+                    </p>
 
-                    <div className="p-6 md:p-8 space-y-6">
-                        {/* ── URL Input ── */}
-                        <form onSubmit={handleSubmit} className="relative max-w-2xl mx-auto">
-                            <div className="relative">
-                                <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                                    <LinkIcon className={`w-5 h-5 transition-colors ${url ? 'text-purple-500' : 'text-gray-400'}`} />
-                                </div>
-                                <input
-                                    type="text"
-                                    placeholder="ألصق رابط الفيديو هنا..."
-                                    value={url}
-                                    onChange={e => setUrl(e.target.value)}
-                                    className="block w-full pl-40 pr-12 py-5 bg-gray-50 border-2 border-gray-100 rounded-2xl text-lg font-medium text-gray-800 focus:ring-0 focus:border-purple-400 focus:bg-white transition-all shadow-sm"
-                                    dir="ltr"
-                                />
-                                <button
-                                    type="submit"
-                                    disabled={isLoading || !url}
-                                    className={`absolute left-2 top-2 bottom-2 px-6 rounded-xl font-bold text-white transition-all flex items-center gap-2 ${isLoading || !url
-                                        ? 'bg-gray-300 cursor-not-allowed'
-                                        : 'bg-linear-to-r from-purple-500 to-indigo-600 hover:shadow-lg hover:shadow-purple-500/30 hover:-translate-y-0.5'
-                                        }`}
-                                >
-                                    {isLoading
-                                        ? <><RefreshCw className="w-4 h-4 animate-spin" /> جاري البحث...</>
-                                        : <><DownloadCloud className="w-4 h-4" /> استخراج</>
-                                    }
-                                </button>
-                            </div>
-                        </form>
-
-                        {/* ── Error ── */}
-                        {error && (
-                            <div className="max-w-2xl mx-auto bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm font-bold flex items-center gap-2">
-                                <AlertCircle className="w-5 h-5 shrink-0" />
-                                {error}
-                            </div>
-                        )}
-
-                        {/* ── Results ── */}
-                        {result && (
-                            <div className="max-w-2xl mx-auto space-y-6 animate-in fade-in-0 slide-in-from-bottom-4 duration-500">
-
-                                {/* Video info card */}
-                                <div className="flex gap-4 p-4 rounded-2xl bg-purple-50/60 border border-purple-100">
-                                    {result.thumbnail && (
-                                        <div className="relative w-28 h-20 shrink-0 rounded-xl overflow-hidden border border-gray-200 bg-gray-100">
-                                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img src={result.thumbnail} alt="" className="w-full h-full object-cover" />
-                                        </div>
-                                    )}
-                                    <div className="flex flex-col justify-center min-w-0">
-                                        {result.platform && (
-                                            <span className="text-[11px] font-bold text-purple-500 uppercase tracking-wider mb-1">{result.platform}</span>
-                                        )}
-                                        <h3 className="font-black text-gray-800 text-sm leading-snug line-clamp-3">{result.title}</h3>
-                                    </div>
-                                </div>
-
-                                {/* No formats found */}
-                                {!hasFormats && (
-                                    <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-yellow-800 text-sm font-medium text-center flex items-center gap-2 justify-center">
-                                        <AlertCircle className="w-4 h-4" />
-                                        لم يتم العثور على صيغ قابلة للتحميل لهذا الرابط.
-                                    </div>
-                                )}
-
-                                {/* Video formats */}
-                                {result.videoFormats.length > 0 && (
-                                    <div>
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <Video className="w-4 h-4 text-gray-500" />
-                                            <span className="text-xs font-black text-gray-500 uppercase tracking-wide">صيغ الفيديو</span>
-                                        </div>
-                                        <div className="space-y-2">
-                                            {result.videoFormats.map((f, i) => (
-                                                <FormatRow key={i} format={f} title={result.title} />
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* Audio formats */}
-                                {result.audioFormats.length > 0 && (
-                                    <div>
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <Music2 className="w-4 h-4 text-purple-500" />
-                                            <span className="text-xs font-black text-purple-500 uppercase tracking-wide">صيغ الصوت</span>
-                                        </div>
-                                        <div className="space-y-2">
-                                            {result.audioFormats.map((f, i) => (
-                                                <FormatRow key={i} format={f} title={result.title} isAudio />
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        )}
+                    <div className="flex justify-center gap-4 mt-6 relative z-10">
+                        <Youtube className="w-5 h-5 text-white/70" />
+                        <Music2 className="w-5 h-5 text-white/70" />
+                        <Instagram className="w-5 h-5 text-white/70" />
+                        <Twitter className="w-5 h-5 text-white/70" />
                     </div>
                 </div>
 
+                <div className="p-6 md:p-8 space-y-6">
+                    {/* ── URL Input ── */}
+                    <form onSubmit={handleSubmit} className="relative max-w-2xl mx-auto">
+                        <div className="relative">
+                            <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                                <LinkIcon className={`w-5 h-5 transition-colors ${url ? 'text-purple-500' : 'text-gray-400'}`} />
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="ألصق رابط الفيديو هنا..."
+                                value={url}
+                                onChange={e => setUrl(e.target.value)}
+                                className="block w-full pl-40 pr-12 py-5 bg-gray-50 border-2 border-gray-100 rounded-2xl text-lg font-medium text-gray-800 focus:ring-0 focus:border-purple-400 focus:bg-white transition-all shadow-sm"
+                                dir="ltr"
+                            />
+                            <button
+                                type="submit"
+                                disabled={isLoading || !url}
+                                className={`absolute left-2 top-2 bottom-2 px-6 rounded-xl font-bold text-white transition-all flex items-center gap-2 ${isLoading || !url
+                                    ? 'bg-gray-300 cursor-not-allowed'
+                                    : 'bg-linear-to-r from-purple-500 to-indigo-600 hover:shadow-lg hover:shadow-purple-500/30 hover:-translate-y-0.5'
+                                    }`}
+                            >
+                                {isLoading
+                                    ? <><RefreshCw className="w-4 h-4 animate-spin" /> جاري البحث...</>
+                                    : <><DownloadCloud className="w-4 h-4" /> استخراج</>
+                                }
+                            </button>
+                        </div>
+                    </form>
+
+                    {/* ── Error ── */}
+                    {error && (
+                        <div className="max-w-2xl mx-auto bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm font-bold flex items-center gap-2">
+                            <AlertCircle className="w-5 h-5 shrink-0" />
+                            {error}
+                        </div>
+                    )}
+
+                    {/* ── Results ── */}
+                    {result && (
+                        <div className="max-w-2xl mx-auto space-y-6 animate-in fade-in-0 slide-in-from-bottom-4 duration-500">
+
+                            {/* Video info card */}
+                            <div className="flex gap-4 p-4 rounded-2xl bg-purple-50/60 border border-purple-100">
+                                {result.thumbnail && (
+                                    <div className="relative w-28 h-20 shrink-0 rounded-xl overflow-hidden border border-gray-200 bg-gray-100">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img src={result.thumbnail} alt="" className="w-full h-full object-cover" />
+                                    </div>
+                                )}
+                                <div className="flex flex-col justify-center min-w-0">
+                                    {result.platform && (
+                                        <span className="text-[11px] font-bold text-purple-500 uppercase tracking-wider mb-1">{result.platform}</span>
+                                    )}
+                                    <h3 className="font-black text-gray-800 text-sm leading-snug line-clamp-3">{result.title}</h3>
+                                </div>
+                            </div>
+
+                            {/* No formats found */}
+                            {!hasFormats && (
+                                <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-yellow-800 text-sm font-medium text-center flex items-center gap-2 justify-center">
+                                    <AlertCircle className="w-4 h-4" />
+                                    لم يتم العثور على صيغ قابلة للتحميل لهذا الرابط.
+                                </div>
+                            )}
+
+                            {/* Video formats */}
+                            {result.videoFormats.length > 0 && (
+                                <div>
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <Video className="w-4 h-4 text-gray-500" />
+                                        <span className="text-xs font-black text-gray-500 uppercase tracking-wide">صيغ الفيديو</span>
+                                    </div>
+                                    <div className="space-y-2">
+                                        {result.videoFormats.map((f, i) => (
+                                            <FormatRow key={i} format={f} title={result.title} />
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Audio formats */}
+                            {result.audioFormats.length > 0 && (
+                                <div>
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <Music2 className="w-4 h-4 text-purple-500" />
+                                        <span className="text-xs font-black text-purple-500 uppercase tracking-wide">صيغ الصوت</span>
+                                    </div>
+                                    <div className="space-y-2">
+                                        {result.audioFormats.map((f, i) => (
+                                            <FormatRow key={i} format={f} title={result.title} isAudio />
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
-        </PageLayout >
+
+        </div>
     );
 }

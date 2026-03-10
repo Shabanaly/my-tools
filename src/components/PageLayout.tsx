@@ -38,7 +38,7 @@ export default function PageLayout({ children, className, hideTopAd }: PageProps
             </header>
 
             {!hideTopAd && (
-                <div className="max-w-6xl mx-auto w-full px-6 pt-6 -mb-8">
+                <div className="max-w-6xl mx-auto w-full px-6 pt-6">
                     <AdBanner />
                 </div>
             )}
@@ -48,7 +48,7 @@ export default function PageLayout({ children, className, hideTopAd }: PageProps
                 {children}
             </main>
 
-            <div className="max-w-6xl mx-auto w-full px-6 pb-6 -mt-8 text-center">
+            <div className="max-w-6xl mx-auto w-full px-6 pb-6 text-center">
                 <AdBanner />
             </div>
 
