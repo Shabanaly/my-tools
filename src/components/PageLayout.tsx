@@ -14,12 +14,7 @@ export default function PageLayout({ children, className, hideTopAd }: PageProps
     return (
         <div className="min-h-screen flex flex-col" style={{ background: 'var(--hero-gradient)' }}>
             {/* ── Header ── */}
-            <header className="sticky top-0 z-50" style={{
-                background: 'rgba(248,249,255,0.8)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                borderBottom: '1px solid rgba(232,234,240,0.9)',
-            }}>
+            <header className="sticky top-0 z-50 bg-[#f8f9ff]/95 md:bg-[#f8f9ff]/80 md:backdrop-blur-xl border-b border-[#e8eaf0]/90">
                 <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-2 group" aria-label="أدواتك - الصفحة الرئيسية">
                         <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-md shadow-blue-100 transition-transform group-hover:scale-110"
