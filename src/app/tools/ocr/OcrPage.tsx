@@ -88,7 +88,7 @@ export default function OcrPage() {
     return (
         <div className="max-w-4xl mx-auto px-4 py-12">
             <Link href="/" className="inline-flex items-center gap-2 text-sm font-bold mb-8 transition-colors hover:opacity-70"
-                style={{ color: '#0ea5e9' }}>
+                style={{ color: '#0ea5e9' }} aria-label="العودة للرئيسية">
                 <ArrowLeft className="w-4 h-4" />
                 العودة للرئيسية
             </Link>
@@ -113,6 +113,8 @@ export default function OcrPage() {
                     {/* Upload Zone */}
                     <div
                         onClick={() => !isProcessing && fileInputRef.current?.click()}
+                        role="button"
+                        aria-label="اختيار صورة من جهازك"
                         className={`border-3 border-dashed rounded-3xl p-8 text-center transition-all flex flex-col items-center justify-center min-h-[250px] ${isProcessing ? 'border-gray-200 bg-gray-50 opacity-70 cursor-not-allowed' : 'border-sky-200 bg-sky-50/30 cursor-pointer hover:border-sky-400 hover:bg-sky-50/50'
                             }`}
                     >
@@ -167,6 +169,7 @@ export default function OcrPage() {
                         <div className="flex justify-center">
                             <button
                                 onClick={(e) => { e.stopPropagation(); processImage(); }}
+                                aria-label="بدء استخراج النص من الصورة"
                                 disabled={isProcessing}
                                 className={`px-10 py-4 text-lg rounded-2xl font-black text-white shadow-xl transition-all flex items-center gap-3 w-full md:w-auto justify-center ${isProcessing
                                     ? 'bg-gray-400 cursor-not-allowed shadow-none'

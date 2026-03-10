@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
+import { Cairo } from 'next/font/google';
 import "./globals.css";
+
+const cairo = Cairo({
+  subsets: ['arabic', 'latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  display: 'swap',
+  variable: '--font-cairo',
+});
 
 export const viewport = {
   themeColor: '#3b5bdb',
@@ -73,13 +81,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" style={{ colorScheme: 'light', backgroundColor: '#f8f9ff' }}>
+    <html lang="ar" dir="rtl" className={cairo.variable} style={{ colorScheme: 'light', backgroundColor: '#f8f9ff' }}>
+      <head>
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
+        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
+      </head>
       <body style={{ backgroundColor: '#f8f9ff', color: '#0f172a' }}>
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5152627364584775"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         {children}
         <Analytics />

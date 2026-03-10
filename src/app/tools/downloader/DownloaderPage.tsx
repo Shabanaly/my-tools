@@ -252,6 +252,7 @@ export default function DownloaderPage() {
                             />
                             <button
                                 type="submit"
+                                aria-label="تحميل الفيديو"
                                 disabled={isLoading || !url}
                                 className={`absolute left-2 top-2 bottom-2 px-6 rounded-xl font-bold text-white transition-all flex items-center gap-2 ${isLoading || !url
                                     ? 'bg-gray-300 cursor-not-allowed'

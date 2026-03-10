@@ -21,7 +21,7 @@ export default function PageLayout({ children, className, hideTopAd }: PageProps
                 borderBottom: '1px solid rgba(232,234,240,0.9)',
             }}>
                 <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-                    <Link href="/" className="flex items-center gap-2 group">
+                    <Link href="/" className="flex items-center gap-2 group" aria-label="أدواتك - الصفحة الرئيسية">
                         <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-md shadow-blue-100 transition-transform group-hover:scale-110"
                             style={{ background: 'linear-gradient(135deg, #3b5bdb, #7048e8)' }}>
                             <Sparkles className="w-5 h-5 text-white" />
@@ -64,7 +64,7 @@ export default function PageLayout({ children, className, hideTopAd }: PageProps
                             <span className="text-lg font-black gradient-text">أدواتك</span>
                         </div>
 
-                        <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4">
+                        <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4" aria-label="روابط سريعة">
                             <Link href="/about" className="text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors">من نحن</Link>
                             <Link href="/privacy" className="text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors">سياسة الخصوصية</Link>
                             <Link href="/terms" className="text-sm font-bold text-gray-500 hover:text-blue-600 transition-colors">شروط الاستخدام</Link>
