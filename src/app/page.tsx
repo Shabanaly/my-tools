@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PageLayout from '@/components/PageLayout';
 import AdBanner from '@/components/AdBanner';
-import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet, Hash, Layers, DownloadCloud, Type } from 'lucide-react';
+import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet, Hash, Layers, DownloadCloud, Type, Maximize } from 'lucide-react';
 
 const tools = [
   {
@@ -134,6 +134,16 @@ const tools = [
     gradient: 'linear-gradient(135deg, #e03131 0%, #f03e3e 100%)',
     shadow: 'rgba(224,49,49,0.25)',
     accent: '#e03131',
+  },
+  {
+    id: 'resize',
+    title: 'تغيير حجم الصور',
+    description: 'غيّر أبعاد صورك بدقة وسهولة لتناسب أي منصة',
+    icon: Maximize,
+    path: '/tools/resize',
+    gradient: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',
+    shadow: 'rgba(14,165,233,0.25)',
+    accent: '#0ea5e9',
   },
 ];
 
