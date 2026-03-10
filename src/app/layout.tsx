@@ -58,12 +58,8 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" style={{ colorScheme: 'light', backgroundColor: '#f8f9ff' }}>
       <head>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5152627364584775"
+          crossOrigin="anonymous"></Script>
       </head>
       <body style={{ backgroundColor: '#f8f9ff', color: '#0f172a' }}>
         {children}

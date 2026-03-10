@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PageLayout from '@/components/PageLayout';
 import AdBanner from '@/components/AdBanner';
-import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet, Hash, Layers, DownloadCloud, Type, Maximize } from 'lucide-react';
+import { Calculator, Coins, CircleDollarSign, ImageDown, FileImage, DollarSign, CalendarClock, ImageIcon, Wallet, Hash, Layers, DownloadCloud, Type, Maximize, Crop, Scissors, LayoutGrid } from 'lucide-react';
 
 const tools = [
   {
@@ -142,6 +142,36 @@ const tools = [
     icon: Maximize,
     path: '/tools/resize',
     gradient: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',
+    shadow: 'rgba(14,165,233,0.25)',
+    accent: '#0ea5e9',
+  },
+  {
+    id: 'crop',
+    title: 'قص الصور',
+    description: 'حدد الجزء الذي تريده من صورتك واقطع الباقي بدقة',
+    icon: Crop,
+    path: '/tools/crop',
+    gradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+    shadow: 'rgba(245,158,11,0.25)',
+    accent: '#f59e0b',
+  },
+  {
+    id: 'remove-bg',
+    title: 'إزالة الخلفية بالذكاء الاصطناعي',
+    description: 'أزل خلفية الصور بدقة فائقة بدون رفع الصورة لأي سيرفر بدعم AI',
+    icon: Scissors,
+    path: '/tools/remove-bg',
+    gradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+    shadow: 'rgba(16,185,129,0.25)',
+    accent: '#10b981',
+  },
+  {
+    id: 'watermark',
+    title: 'إضافة علامة مائية',
+    description: 'احمِ حقوق صورك بإضافة نص أو شعار كعلامة مائية بسهولة',
+    icon: LayoutGrid,
+    path: '/tools/watermark',
+    gradient: 'linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%)',
     shadow: 'rgba(14,165,233,0.25)',
     accent: '#0ea5e9',
   },
