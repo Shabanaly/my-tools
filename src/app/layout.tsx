@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
-import Script from "next/script";
+
 import { Cairo } from 'next/font/google';
 import "./globals.css";
 
@@ -89,11 +89,10 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
       </head>
       <body style={{ backgroundColor: '#f8f9ff', color: '#0f172a' }}>
-        <Script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5152627364584775"
           crossOrigin="anonymous"
-          strategy="lazyOnload"
         />
         {children}
         <Analytics />
