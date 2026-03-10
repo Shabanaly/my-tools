@@ -54,8 +54,12 @@ export async function POST(req: NextRequest) {
 
         for (const m of data.medias) {
             const ext = m.extension?.toLowerCase();
+
+            // Strictly allow only MP4 and MP3 as requested
+            if (ext !== 'mp4' && ext !== 'mp3') continue;
+
             const rawQuality = m.quality || '';
-            const type = m.type || (ext === 'mp3' || ext === 'm4a' ? 'audio' : 'video');
+            const type = m.type || (ext === 'mp3' ? 'audio' : 'video');
 
             // Deduplicate roughly by quality label and extension
             const key = `${rawQuality}-${ext}`;
