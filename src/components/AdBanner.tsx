@@ -14,8 +14,8 @@ interface AdBannerProps {
 
 export default function AdBanner({
     className,
-    adClient = 'ca-pub-XXXXXXXXXXXX', // Replace with real Pub ID
-    adSlot = 'XXXXXXXXXX',           // Replace with real Slot ID
+    adClient = 'ca-pub-5152627364584775', // Real Pub ID
+    adSlot = 'XXXXXXXXXX',                // Placeholder Slot ID (User should update this)
     adFormat = 'auto',
     fullWidthResponsive = true,
     label = 'مساحة إعلانية'
