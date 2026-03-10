@@ -11,6 +11,23 @@ const withPWA = withPWAInit({
 
 const nextConfig: NextConfig = {
   turbopack: {},
+  async headers() {
+    return [
+      {
+        source: '/tools/remove-bg', // Or '/(.*)' to apply to all routes if needed by other WASM tools
+        headers: [
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'require-corp',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default withPWA(nextConfig);

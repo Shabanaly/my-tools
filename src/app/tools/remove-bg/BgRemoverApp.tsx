@@ -84,6 +84,9 @@ export default function BgRemoverApp() {
 
         try {
             const config: Config = {
+                output: {
+                    format: 'image/png', // Explicitly request PNG for transparency
+                },
                 progress: (key, current, total) => {
                     // key is like 'fetch:model', 'compute:inference'
                     const label = key.includes('fetch') ? 'جاري تحميل نماذج الذكاء الاصطناعي...' : 'جاري معالجة الصورة وفصل الخلفية...';
@@ -108,7 +111,7 @@ export default function BgRemoverApp() {
 
         } catch (err: any) {
             console.error('Removal Error:', err);
-            setErrorMsg('حدث خطأ غير متوقع أثناء المعالجة. تأكد من أن جهازك يدعم المعالجة السريعة (WebAssembly).');
+            setErrorMsg('حدث خطأ أثناء المعالجة. يرجى التأكد من تحديث متصفحك. إذا استمرت المشكلة، فقد يكون حجم الصورة كبيراً جداً على ذاكرة جهازك. حاول استخدام صورة أصغر.');
         } finally {
             setIsProcessing(false);
         }
