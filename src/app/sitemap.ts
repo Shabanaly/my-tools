@@ -14,25 +14,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
         // ── أدوات ذات أولوية عالية جداً ──────────────────────────────────
         {
-            url: `${baseUrl}/tools/ocr`,
+            url: encodeURI(`${baseUrl}/tools/ocr`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.95,
         },
         {
-            url: `${baseUrl}/tools/downloader`,
+            url: encodeURI(`${baseUrl}/tools/downloader`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.95,
         },
         {
-            url: `${baseUrl}/tools/currency`,
+            url: encodeURI(`${baseUrl}/tools/currency`),
             lastModified: new Date(),
             changeFrequency: 'hourly',
             priority: 0.95,
         },
         {
-            url: `${baseUrl}/tools/gold`,
+            url: encodeURI(`${baseUrl}/tools/gold`),
             lastModified: new Date(),
             changeFrequency: 'hourly',
             priority: 0.95,
@@ -40,43 +40,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
         // ── أدوات صور - معالجة وتحويل ────────────────────────────────────
         {
-            url: `${baseUrl}/tools/image-converter`,
+            url: encodeURI(`${baseUrl}/tools/image-converter`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.9,
         },
         {
-            url: `${baseUrl}/tools/compress`,
+            url: encodeURI(`${baseUrl}/tools/compress`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.9,
         },
         {
-            url: `${baseUrl}/tools/remove-bg`,
+            url: encodeURI(`${baseUrl}/tools/remove-bg`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.9,
         },
         {
-            url: `${baseUrl}/tools/crop`,
+            url: encodeURI(`${baseUrl}/tools/crop`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.85,
         },
         {
-            url: `${baseUrl}/tools/resize`,
+            url: encodeURI(`${baseUrl}/tools/resize`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.85,
         },
         {
-            url: `${baseUrl}/tools/watermark`,
+            url: encodeURI(`${baseUrl}/tools/watermark`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.85,
         },
         {
-            url: `${baseUrl}/tools/meme`,
+            url: encodeURI(`${baseUrl}/tools/meme`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.8,
@@ -84,13 +84,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
         // ── أدوات PDF ────────────────────────────────────────────────────
         {
-            url: `${baseUrl}/tools/pdf-merge`,
+            url: encodeURI(`${baseUrl}/tools/pdf-merge`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.9,
         },
         {
-            url: `${baseUrl}/tools/pdf`,
+            url: encodeURI(`${baseUrl}/tools/pdf`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.85,
@@ -98,25 +98,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
         // ── أدوات مالية وحاسبات ──────────────────────────────────────────
         {
-            url: `${baseUrl}/tools/salary`,
+            url: encodeURI(`${baseUrl}/tools/salary`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.9,
         },
         {
-            url: `${baseUrl}/tools/zakat`,
+            url: encodeURI(`${baseUrl}/tools/zakat`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.85,
         },
         {
-            url: `${baseUrl}/tools/installment`,
+            url: encodeURI(`${baseUrl}/tools/installment`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.85,
         },
         {
-            url: `${baseUrl}/tools/age`,
+            url: encodeURI(`${baseUrl}/tools/age`),
             lastModified: new Date(),
             changeFrequency: 'yearly',
             priority: 0.85,
@@ -124,7 +124,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
         // ── أدوات أخرى ───────────────────────────────────────────────────
         {
-            url: `${baseUrl}/tools/hashtags`,
+            url: encodeURI(`${baseUrl}/tools/hashtags`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.85,
@@ -132,29 +132,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
         // ── الصفحات الثابتة ──────────────────────────────────────────────
         {
-            url: `${baseUrl}/about`,
+            url: encodeURI(`${baseUrl}/about`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.6,
         },
         {
-            url: `${baseUrl}/contact`,
+            url: encodeURI(`${baseUrl}/contact`),
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.5,
         },
         {
-            url: `${baseUrl}/privacy`,
+            url: encodeURI(`${baseUrl}/privacy`),
             lastModified: new Date(),
             changeFrequency: 'yearly',
             priority: 0.4,
         },
         {
-            url: `${baseUrl}/terms`,
+            url: encodeURI(`${baseUrl}/terms`),
             lastModified: new Date(),
             changeFrequency: 'yearly',
             priority: 0.4,
         },
     ];
+
 }
 
